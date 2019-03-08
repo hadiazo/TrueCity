@@ -40,24 +40,66 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelUsuario = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
+        labelContrasenha = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        botonAceptar = new javax.swing.JButton();
+        labelFondo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrueCity");
         setName("frame1\n"); // NOI18N
         setPreferredSize(new java.awt.Dimension(800, 600));
+        getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+        labelUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelUsuario.setText("Usuario");
+        getContentPane().add(labelUsuario);
+        labelUsuario.setBounds(300, 30, 50, 25);
+
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtUsuario);
+        txtUsuario.setBounds(350, 30, 120, 25);
+
+        labelContrasenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelContrasenha.setText("Contraseña");
+        getContentPane().add(labelContrasenha);
+        labelContrasenha.setBounds(480, 30, 70, 25);
+
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jPasswordField1);
+        jPasswordField1.setBounds(560, 30, 120, 25);
+
+        botonAceptar.setBackground(new java.awt.Color(255, 102, 0));
+        botonAceptar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        botonAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        botonAceptar.setText("Aceptar");
+        getContentPane().add(botonAceptar);
+        botonAceptar.setBounds(690, 30, 77, 25);
+
+        labelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/fondo.jpeg"))); // NOI18N
+        getContentPane().add(labelFondo);
+        labelFondo.setBounds(0, 0, 810, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -95,5 +137,11 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAceptar;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JLabel labelContrasenha;
+    private javax.swing.JLabel labelFondo;
+    private javax.swing.JLabel labelUsuario;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
