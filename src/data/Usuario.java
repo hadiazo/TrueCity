@@ -1,6 +1,6 @@
 package data;
 
-public abstract class Usuario {
+public class Usuario {
 	private String nombre;
 	private String nick;
 	private String clave;
