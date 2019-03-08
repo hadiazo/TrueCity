@@ -5,22 +5,22 @@
  */
 package gui;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*; 
 
 /**
  *
  * @author Harold Díaz
  */
-public class Ventana extends javax.swing.JFrame {
+public class Inicio extends javax.swing.JFrame {
 
     /**
      * Creates new form Ventana
      */
-    public Ventana() {
+    public Inicio() {
         initComponents();
+        this.setLocationRelativeTo(null);
         /*
         ImageIcon uno = new ImageIcon(this.getClass().getResource("/sources/img/fondo.PNG"));
         uno = new ImageIcon(uno.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH));
@@ -45,6 +45,7 @@ public class Ventana extends javax.swing.JFrame {
         labelContrasenha = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         botonAceptar = new javax.swing.JButton();
+        labelOlvidasteContrasenha = new javax.swing.JLabel();
         labelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,6 +87,11 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().add(botonAceptar);
         botonAceptar.setBounds(690, 30, 77, 25);
 
+        labelOlvidasteContrasenha.setForeground(new java.awt.Color(255, 255, 255));
+        labelOlvidasteContrasenha.setText("¿Olvidaste tu contraseña?");
+        getContentPane().add(labelOlvidasteContrasenha);
+        labelOlvidasteContrasenha.setBounds(560, 65, 170, 14);
+
         labelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/fondo.jpeg"))); // NOI18N
         getContentPane().add(labelFondo);
         labelFondo.setBounds(0, 0, 810, 600);
@@ -118,20 +124,21 @@ public class Ventana extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ventana().setVisible(true);
+                new Inicio().setVisible(true);
             }
         });
     }
@@ -141,7 +148,23 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel labelContrasenha;
     private javax.swing.JLabel labelFondo;
+    private javax.swing.JLabel labelOlvidasteContrasenha;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+    
+    
+    /*
+    class MouseListener extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            JLabel l = (JLabel) e.getSource();
+            if(l.getName().equals("¿Olvidaste tu contraseña?")) {
+                
+            }
+        }
+    }
+    MouseListener mouseListener = new MouseListener();
+    labelOlvidasteContrasenha.addMouseListener(MouseListener);
+    */
 }
