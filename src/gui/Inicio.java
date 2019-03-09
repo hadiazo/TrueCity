@@ -20,6 +20,7 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
         /*
         ImageIcon uno = new ImageIcon(this.getClass().getResource("/sources/img/fondo.PNG"));
@@ -40,16 +41,45 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         labelUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        labelContrasenha = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jLabel13 = new javax.swing.JLabel();
+        contrasenhaUsuarioNuevo = new javax.swing.JPasswordField();
         botonAceptar = new javax.swing.JButton();
         labelOlvidasteContrasenha = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        labelContrasenha = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtNuevoUsuario = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jPasswordField2 = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
+        txtCiudad = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        spinnerDia = new javax.swing.JSpinner();
+        jLabel9 = new javax.swing.JLabel();
+        spinnerMes = new javax.swing.JSpinner();
+        jLabel10 = new javax.swing.JLabel();
+        spinnerAnho = new javax.swing.JSpinner();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        radioMasculino = new javax.swing.JRadioButton();
+        radioFemenino = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        txtPrimeraMascota = new javax.swing.JTextField();
+        botonCrearUsuario = new javax.swing.JButton();
         labelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrueCity");
+        setMaximumSize(new java.awt.Dimension(1057, 661));
         setName("frame1\n"); // NOI18N
         setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
@@ -65,32 +95,208 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtUsuario);
-        txtUsuario.setBounds(350, 30, 120, 25);
+        txtUsuario.setBounds(350, 30, 120, 30);
 
-        labelContrasenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelContrasenha.setText("Contraseña");
-        getContentPane().add(labelContrasenha);
-        labelContrasenha.setBounds(480, 30, 70, 25);
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel13.setText("Pregunta de seguridad");
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(370, 438, 260, 25);
 
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        contrasenhaUsuarioNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                contrasenhaUsuarioNuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(560, 30, 120, 25);
+        getContentPane().add(contrasenhaUsuarioNuevo);
+        contrasenhaUsuarioNuevo.setBounds(370, 280, 180, 30);
 
         botonAceptar.setBackground(new java.awt.Color(255, 102, 0));
         botonAceptar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         botonAceptar.setForeground(new java.awt.Color(255, 255, 255));
         botonAceptar.setText("Aceptar");
         getContentPane().add(botonAceptar);
-        botonAceptar.setBounds(690, 30, 77, 25);
+        botonAceptar.setBounds(690, 30, 77, 30);
 
         labelOlvidasteContrasenha.setForeground(new java.awt.Color(255, 255, 255));
         labelOlvidasteContrasenha.setText("¿Olvidaste tu contraseña?");
         getContentPane().add(labelOlvidasteContrasenha);
         labelOlvidasteContrasenha.setBounds(560, 65, 170, 14);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("Apellido");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(634, 140, 70, 14);
+
+        labelContrasenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelContrasenha.setText("Contraseña");
+        getContentPane().add(labelContrasenha);
+        labelContrasenha.setBounds(480, 30, 70, 25);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setText("E-mail");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(640, 200, 100, 14);
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtNombre);
+        txtNombre.setBounds(370, 160, 180, 30);
+
+        txtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtApellido);
+        txtApellido.setBounds(570, 160, 180, 30);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setText("Ciudad de origen");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(610, 260, 140, 14);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setText("Usuario (nick)");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(420, 200, 100, 14);
+
+        txtNuevoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNuevoUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtNuevoUsuario);
+        txtNuevoUsuario.setBounds(370, 220, 180, 30);
+
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtEmail);
+        txtEmail.setBounds(570, 220, 180, 30);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setText("Nombre");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(440, 140, 70, 14);
+
+        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jPasswordField2);
+        jPasswordField2.setBounds(560, 30, 120, 30);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setText("Contraseña");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(430, 260, 90, 14);
+
+        txtCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCiudadActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtCiudad);
+        txtCiudad.setBounds(570, 280, 180, 30);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setText("Día");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(490, 350, 34, 15);
+
+        spinnerDia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        spinnerDia.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
+        spinnerDia.setToolTipText("");
+        getContentPane().add(spinnerDia);
+        spinnerDia.setBounds(490, 370, 50, 30);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setText("Mes");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(560, 350, 21, 15);
+
+        spinnerMes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        spinnerMes.setModel(new javax.swing.SpinnerListModel(new String[] {"Diciembre", "Noviembre", "Octubre", "Septiembre", "Agosto", "Julio", "Junio", "Mayo", "Abril", "Marzo", "Febrero", "Enero"}));
+        getContentPane().add(spinnerMes);
+        spinnerMes.setBounds(560, 370, 100, 30);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setText("Año");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(680, 350, 30, 15);
+
+        spinnerAnho.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        spinnerAnho.setModel(new javax.swing.SpinnerNumberModel(2004, 1900, 2004, 1));
+        getContentPane().add(spinnerAnho);
+        spinnerAnho.setBounds(680, 370, 70, 30);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setText("Género");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(390, 325, 130, 14);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel12.setText("Fecha de Nacimiento");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(560, 325, 130, 14);
+
+        buttonGroup1.add(radioMasculino);
+        radioMasculino.setText("Masculino");
+        radioMasculino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioMasculinoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(radioMasculino);
+        radioMasculino.setBounds(370, 350, 90, 23);
+
+        buttonGroup1.add(radioFemenino);
+        radioFemenino.setText("Femenino");
+        radioFemenino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioFemeninoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(radioFemenino);
+        radioFemenino.setBounds(370, 378, 90, 23);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Registrarse");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(524, 100, 70, 25);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("¿Cuál fue el nombre de su primera mascota?");
+        getContentPane().add(jLabel14);
+        jLabel14.setBounds(370, 475, 300, 14);
+
+        txtPrimeraMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrimeraMascotaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtPrimeraMascota);
+        txtPrimeraMascota.setBounds(370, 500, 240, 30);
+
+        botonCrearUsuario.setBackground(new java.awt.Color(255, 102, 0));
+        botonCrearUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        botonCrearUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        botonCrearUsuario.setText("Crear Usuario");
+        botonCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCrearUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonCrearUsuario);
+        botonCrearUsuario.setBounds(630, 500, 120, 30);
 
         labelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/fondo.jpeg"))); // NOI18N
         getContentPane().add(labelFondo);
@@ -99,13 +305,53 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void contrasenhaUsuarioNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrasenhaUsuarioNuevoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_contrasenhaUsuarioNuevoActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNuevoUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNuevoUsuarioActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField2ActionPerformed
+
+    private void txtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCiudadActionPerformed
+
+    private void radioMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMasculinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioMasculinoActionPerformed
+
+    private void radioFemeninoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFemeninoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioFemeninoActionPerformed
+
+    private void txtPrimeraMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrimeraMascotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrimeraMascotaActionPerformed
+
+    private void botonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCrearUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,11 +391,39 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JButton botonCrearUsuario;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JPasswordField contrasenhaUsuarioNuevo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JLabel labelContrasenha;
     private javax.swing.JLabel labelFondo;
     private javax.swing.JLabel labelOlvidasteContrasenha;
     private javax.swing.JLabel labelUsuario;
+    private javax.swing.JRadioButton radioFemenino;
+    private javax.swing.JRadioButton radioMasculino;
+    private javax.swing.JSpinner spinnerAnho;
+    private javax.swing.JSpinner spinnerDia;
+    private javax.swing.JSpinner spinnerMes;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCiudad;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNuevoUsuario;
+    private javax.swing.JTextField txtPrimeraMascota;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
     

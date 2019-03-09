@@ -16,6 +16,7 @@ public class OlvidasteTuContrasenha extends javax.swing.JFrame {
      */
     public OlvidasteTuContrasenha() {
         initComponents();
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
 
