@@ -1,16 +1,16 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Guia extends Usuario {
 	private String tipoGuia;
 	private ArrayList <String> diasDisponibles;
 	private ArrayList <Integer> horasDisponibles;
-	
-	public Guia(String nombre, String nick, String clave, String ciudad) {
-		super(nombre, nick, clave, ciudad);
-		// TODO Auto-generated constructor stub
-	}
+
+    public Guia(String nombre, String apellido, String nick, String email, String clave, String ciudad, String genero, Date fechaNacimiento, String respuestaSeguridad) {
+        super(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
+    }
 
 	public String getTipoGuia() {
 		return tipoGuia;

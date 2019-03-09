@@ -5,9 +5,11 @@
  */
 package gui;
 
+import data.Usuario;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*; 
+import java.util.Date;
 
 /**
  *
@@ -15,6 +17,15 @@ import java.awt.event.*;
  */
 public class Inicio extends javax.swing.JFrame {
 
+    private String nombre;
+    private String apellido;
+    private String nick;
+    private String email;
+    private String clave;
+    private String ciudad;
+    private String genero;
+    private Date fechaNacimiento;
+    private String respuestaSeguridad;
     /**
      * Creates new form Ventana
      */
@@ -42,6 +53,7 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         labelUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -61,12 +73,6 @@ public class Inicio extends javax.swing.JFrame {
         jPasswordField2 = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
         txtCiudad = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        spinnerDia = new javax.swing.JSpinner();
-        jLabel9 = new javax.swing.JLabel();
-        spinnerMes = new javax.swing.JSpinner();
-        jLabel10 = new javax.swing.JLabel();
-        spinnerAnho = new javax.swing.JSpinner();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         radioMasculino = new javax.swing.JRadioButton();
@@ -83,6 +89,8 @@ public class Inicio extends javax.swing.JFrame {
         setName("frame1\n"); // NOI18N
         setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
+        getContentPane().add(jDateChooser1);
+        jDateChooser1.setBounds(490, 360, 260, 30);
 
         labelUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelUsuario.setText("Usuario");
@@ -206,37 +214,6 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(txtCiudad);
         txtCiudad.setBounds(570, 280, 180, 30);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("Día");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(490, 350, 34, 15);
-
-        spinnerDia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        spinnerDia.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
-        spinnerDia.setToolTipText("");
-        getContentPane().add(spinnerDia);
-        spinnerDia.setBounds(490, 370, 50, 30);
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel9.setText("Mes");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(560, 350, 21, 15);
-
-        spinnerMes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        spinnerMes.setModel(new javax.swing.SpinnerListModel(new String[] {"Diciembre", "Noviembre", "Octubre", "Septiembre", "Agosto", "Julio", "Junio", "Mayo", "Abril", "Marzo", "Febrero", "Enero"}));
-        getContentPane().add(spinnerMes);
-        spinnerMes.setBounds(560, 370, 100, 30);
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel10.setText("Año");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(680, 350, 30, 15);
-
-        spinnerAnho.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        spinnerAnho.setModel(new javax.swing.SpinnerNumberModel(2004, 1900, 2004, 1));
-        getContentPane().add(spinnerAnho);
-        spinnerAnho.setBounds(680, 370, 70, 30);
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("Género");
         getContentPane().add(jLabel11);
@@ -351,6 +328,33 @@ public class Inicio extends javax.swing.JFrame {
 
     private void botonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearUsuarioActionPerformed
         // TODO add your handling code here:
+        Date fecha = jDateChooser1.getDate();
+        nombre = this.txtNombre.getText();
+        apellido = this.txtApellido.getText();
+        nick = this.txtNuevoUsuario.getText();
+        email = this.txtEmail.getText();
+        ciudad = this.txtCiudad.getText();
+        if (this.radioFemenino.isSelected()) {
+            genero = this.radioFemenino.getText();
+        } else {
+            genero = this.radioMasculino.getText();
+        }
+        fechaNacimiento = fecha;
+        respuestaSeguridad = this.txtPrimeraMascota.getText();
+        
+        if (nombre.length() > 0 && apellido.length() > 0 && nick.length() > 0
+                && email.length() > 0 && ciudad.length() > 0 && respuestaSeguridad.length() > 0) {
+
+            /*Futbolista futbolista = new Futbolista(nombre, apellido, posicion, genero);
+            equipo.add(futbolista);*/
+            Usuario usuario = new Usuario(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
+            JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito. Ingrese a la plataforma");
+            System.out.println(usuario.toString());
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Error creando usuario. Intente de nuevo",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_botonCrearUsuarioActionPerformed
 
     /**
@@ -394,8 +398,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton botonCrearUsuario;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPasswordField contrasenhaUsuarioNuevo;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -406,8 +410,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JLabel labelContrasenha;
     private javax.swing.JLabel labelFondo;
@@ -415,9 +417,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JRadioButton radioFemenino;
     private javax.swing.JRadioButton radioMasculino;
-    private javax.swing.JSpinner spinnerAnho;
-    private javax.swing.JSpinner spinnerDia;
-    private javax.swing.JSpinner spinnerMes;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtEmail;
