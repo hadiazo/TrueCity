@@ -5,6 +5,10 @@
  */
 package gui;
 
+import data.Usuario;
+import java.util.TreeMap;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Harold Díaz
@@ -14,6 +18,11 @@ public class OlvidasteTuContrasenha extends javax.swing.JFrame {
     /**
      * Creates new form OlvidasteTuContrasenha
      */
+    private String nick;
+    private String respuestaSeguridad;
+    private String clave;
+    private TreeMap <String, Usuario> listaUsuarios = new TreeMap <>();
+    
     public OlvidasteTuContrasenha() {
         initComponents();
         this.setResizable(false);
@@ -31,97 +40,120 @@ public class OlvidasteTuContrasenha extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         botonAceptar = new javax.swing.JButton();
-        spinnerDia = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        spinnerAnho = new javax.swing.JSpinner();
-        jLabel6 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        txtPrimeraMascota = new javax.swing.JTextField();
+        contrasenha = new javax.swing.JPasswordField();
         labelFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrueCity");
-        setPreferredSize(new java.awt.Dimension(360, 270));
+        setPreferredSize(new java.awt.Dimension(400, 300));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 102, 0));
         jLabel1.setText("Recupera tu contraseña");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 20, 220, 20);
+        jLabel1.setBounds(20, 10, 220, 20);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("¿Cuál era el nombre de su primera mascota?");
+        jLabel2.setText("Ingrese su nombre de usuario o nick");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 50, 270, 30);
+        jLabel2.setBounds(20, 40, 270, 25);
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(20, 80, 250, 25);
+        getContentPane().add(txtUsuario);
+        txtUsuario.setBounds(20, 65, 250, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Ingrese su fecha de nacimiento");
+        jLabel3.setText("Ingrese su contraseña nueva");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 110, 270, 30);
+        jLabel3.setBounds(20, 170, 270, 25);
 
         botonAceptar.setBackground(new java.awt.Color(255, 102, 0));
         botonAceptar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         botonAceptar.setForeground(new java.awt.Color(255, 255, 255));
         botonAceptar.setText("Aceptar");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonAceptar);
-        botonAceptar.setBounds(250, 200, 77, 25);
-
-        spinnerDia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        spinnerDia.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
-        spinnerDia.setToolTipText("");
-        getContentPane().add(spinnerDia);
-        spinnerDia.setBounds(20, 160, 50, 30);
+        botonAceptar.setBounds(300, 240, 77, 25);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("Día");
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("¿Cuál era el nombre de su primera mascota?");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 140, 34, 15);
+        jLabel4.setBounds(20, 105, 270, 25);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setText("Año");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(220, 140, 30, 15);
+        txtPrimeraMascota.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtPrimeraMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrimeraMascotaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtPrimeraMascota);
+        txtPrimeraMascota.setBounds(20, 130, 250, 30);
 
-        spinnerAnho.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        spinnerAnho.setModel(new javax.swing.SpinnerNumberModel(2004, 1900, 2004, 1));
-        getContentPane().add(spinnerAnho);
-        spinnerAnho.setBounds(220, 160, 70, 30);
+        contrasenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contrasenhaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(contrasenha);
+        contrasenha.setBounds(20, 195, 250, 30);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("Mes");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(90, 140, 21, 15);
-
-        jSpinner1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jSpinner1.setModel(new javax.swing.SpinnerListModel(new String[] {"Diciembre", "Noviembre", "Octubre", "Septiembre", "Agosto", "Julio", "Junio", "Mayo", "Abril", "Marzo", "Febrero", "Enero"}));
-        getContentPane().add(jSpinner1);
-        jSpinner1.setBounds(90, 160, 100, 30);
-
-        labelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/miniFondo.PNG"))); // NOI18N
+        labelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/miniFondo.jpeg"))); // NOI18N
         getContentPane().add(labelFondo);
-        labelFondo.setBounds(0, 0, 360, 270);
+        labelFondo.setBounds(0, 0, 400, 310);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtPrimeraMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrimeraMascotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrimeraMascotaActionPerformed
+
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        // TODO add your handling code here:
+        nick = this.txtUsuario.getText();
+        respuestaSeguridad = this.txtPrimeraMascota.getText();
+        clave = String.valueOf(this.contrasenha.getPassword());
+        if (!listaUsuarios.containsKey(nick)) {
+            JOptionPane.showMessageDialog(rootPane, "Usuario no encontrado. Digite otra vez. ",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!respuestaSeguridad.equals(listaUsuarios.get(nick).getRespuestaSeguridad())) {
+            JOptionPane.showMessageDialog(rootPane, "Su respuesta no coincide. Digite otra vez. ",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!(clave.length() > 0)) {
+            JOptionPane.showMessageDialog(rootPane, "Su contraseña no puede ser vacía. Digite otra vez. ",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            listaUsuarios.get(nick).setClave(clave);
+            JOptionPane.showMessageDialog(rootPane, "Contraseña cambiada con éxito. Ingrese a la plataforma. ");
+            this.setVisible(false);
+        }
+        
+    }//GEN-LAST:event_botonAceptarActionPerformed
+
+    private void contrasenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrasenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contrasenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,16 +192,13 @@ public class OlvidasteTuContrasenha extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;
+    private javax.swing.JPasswordField contrasenha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelFondo;
-    private javax.swing.JSpinner spinnerAnho;
-    private javax.swing.JSpinner spinnerDia;
+    private javax.swing.JTextField txtPrimeraMascota;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

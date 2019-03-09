@@ -10,13 +10,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*; 
 import java.util.Date;
+import java.util.TreeMap;
 
 /**
  *
  * @author Harold Díaz
  */
 public class Inicio extends javax.swing.JFrame {
-
+    private TreeMap <String, Usuario> listaUsuarios = new TreeMap <>();
     private String nombre;
     private String apellido;
     private String nick;
@@ -24,7 +25,7 @@ public class Inicio extends javax.swing.JFrame {
     private String clave;
     private String ciudad;
     private String genero;
-    private Date fechaNacimiento;
+    private Date fechaNacimiento = null;
     private String respuestaSeguridad;
     /**
      * Creates new form Ventana
@@ -128,6 +129,11 @@ public class Inicio extends javax.swing.JFrame {
 
         labelOlvidasteContrasenha.setForeground(new java.awt.Color(255, 255, 255));
         labelOlvidasteContrasenha.setText("¿Olvidaste tu contraseña?");
+        labelOlvidasteContrasenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelOlvidasteContrasenhaMousePressed(evt);
+            }
+        });
         getContentPane().add(labelOlvidasteContrasenha);
         labelOlvidasteContrasenha.setBounds(560, 65, 170, 14);
 
@@ -332,6 +338,7 @@ public class Inicio extends javax.swing.JFrame {
         nombre = this.txtNombre.getText();
         apellido = this.txtApellido.getText();
         nick = this.txtNuevoUsuario.getText();
+        clave = String.valueOf(this.contrasenhaUsuarioNuevo.getPassword());
         email = this.txtEmail.getText();
         ciudad = this.txtCiudad.getText();
         if (this.radioFemenino.isSelected()) {
@@ -342,20 +349,26 @@ public class Inicio extends javax.swing.JFrame {
         fechaNacimiento = fecha;
         respuestaSeguridad = this.txtPrimeraMascota.getText();
         
-        if (nombre.length() > 0 && apellido.length() > 0 && nick.length() > 0
-                && email.length() > 0 && ciudad.length() > 0 && respuestaSeguridad.length() > 0) {
+        if (nombre.length() > 0 && apellido.length() > 0 && nick.length() > 0 && email.length() > 0 
+                && clave.length() > 0 && ciudad.length() > 0 && respuestaSeguridad.length() > 0 
+                && fecha != null && email.indexOf('@') > 0 && email.indexOf('.') > 0 && !listaUsuarios.containsKey(nick)) {
 
-            /*Futbolista futbolista = new Futbolista(nombre, apellido, posicion, genero);
-            equipo.add(futbolista);*/
             Usuario usuario = new Usuario(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
+            listaUsuarios.put(usuario.getNick(), usuario);
             JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito. Ingrese a la plataforma");
-            System.out.println(usuario.toString());
+            //System.out.println(usuario.toString());
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Error creando usuario. Intente de nuevo",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Error creando usuario. Probablemente el nick ya fue tomado, "
+                    + "o ingresó un campo de texto no válido. Intente de nuevo",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonCrearUsuarioActionPerformed
+
+    private void labelOlvidasteContrasenhaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOlvidasteContrasenhaMousePressed
+        // TODO add your handling code here:
+        OlvidasteTuContrasenha a = new OlvidasteTuContrasenha ();
+        a.setVisible(true);
+    }//GEN-LAST:event_labelOlvidasteContrasenhaMousePressed
 
     /**
      * @param args the command line arguments
