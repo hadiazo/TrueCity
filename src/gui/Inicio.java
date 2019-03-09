@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*; 
 import java.util.Date;
 import java.util.TreeMap;
+import com.toedter.calendar.*;
 
 /**
  *
@@ -86,7 +87,6 @@ public class Inicio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrueCity");
-        setMaximumSize(new java.awt.Dimension(1057, 661));
         setName("frame1\n"); // NOI18N
         setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
