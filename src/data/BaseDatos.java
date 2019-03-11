@@ -18,6 +18,9 @@ public abstract class BaseDatos {
             while (null != line) {
                 String[] atributos = line.split(",");
                 Date fecha = new SimpleDateFormat("dd/MM/yyyy").parse(atributos[7]); //Para convertir el String a Date
+                if (listaUsuarios.containsKey(atributos[2])) {
+                    listaUsuarios.remove(atributos[2]); //Esto evita que, en caso de que haya existido cambios de datos, no haya redundancia
+                }
                 Usuario usuarioGuardado = new Usuario(atributos[0], atributos[1], atributos[2], atributos[3], atributos[4], atributos[5], atributos[6], fecha, atributos[8]);
                 listaUsuarios.put(usuarioGuardado.getNick(), usuarioGuardado);
                 line = br.readLine();
