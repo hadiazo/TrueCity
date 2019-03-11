@@ -31,8 +31,26 @@ public class CrearPerfil extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtCelular = new javax.swing.JTextField();
+        comboBoxTour = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        boxUrbano = new javax.swing.JCheckBox();
+        boxComercial = new javax.swing.JCheckBox();
+        boxCultural = new javax.swing.JCheckBox();
+        boxEcologico = new javax.swing.JCheckBox();
+        boxGastronomico = new javax.swing.JCheckBox();
+        boxHistorico = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        boxAceptarTyC = new javax.swing.JCheckBox();
+        botonAceptar = new javax.swing.JButton();
         labelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,24 +62,162 @@ public class CrearPerfil extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 102, 0));
         jLabel2.setText("Gracias por registrarte");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 30, 400, 50);
+        jLabel2.setBounds(30, 20, 400, 50);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Antes de empezar, queremos saber más sobre ti");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 100, 340, 30);
+        jLabel1.setBounds(20, 90, 340, 30);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comercial", "Cultural", "Ecológico", "Gastronómico", "Histórico", "Urbano" }));
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(240, 155, 190, 30);
+        txtCelular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCelular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCelularActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtCelular);
+        txtCelular.setBounds(240, 150, 190, 30);
+
+        comboBoxTour.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        comboBoxTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comercial", "Cultural", "Ecológico", "Gastronómico", "Histórico", "Urbano" }));
+        getContentPane().add(comboBoxTour);
+        comboBoxTour.setBounds(240, 200, 190, 30);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(240, 250, 190, 100);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("¿Qué tipo de tour quieres dar?");
+        jLabel3.setText("¿Qué tipo de tours te gustaría recibir?");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 160, 200, 20);
+        jLabel3.setBounds(100, 370, 230, 30);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Número de celular");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(20, 150, 200, 30);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("¿Qué tipo de tour quieres dar?");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(20, 200, 200, 30);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Haz una breve descripción de ti");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(20, 250, 200, 100);
+
+        boxUrbano.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        boxUrbano.setForeground(new java.awt.Color(255, 102, 0));
+        boxUrbano.setText("Urbano");
+        boxUrbano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxUrbanoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boxUrbano);
+        boxUrbano.setBounds(340, 460, 110, 30);
+
+        boxComercial.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        boxComercial.setForeground(new java.awt.Color(255, 102, 0));
+        boxComercial.setText("Comercial");
+        boxComercial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxComercialActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boxComercial);
+        boxComercial.setBounds(40, 420, 110, 30);
+
+        boxCultural.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        boxCultural.setForeground(new java.awt.Color(255, 102, 0));
+        boxCultural.setText("Cultural");
+        boxCultural.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxCulturalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boxCultural);
+        boxCultural.setBounds(200, 420, 110, 30);
+
+        boxEcologico.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        boxEcologico.setForeground(new java.awt.Color(255, 102, 0));
+        boxEcologico.setText("Ecológico");
+        boxEcologico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxEcologicoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boxEcologico);
+        boxEcologico.setBounds(340, 420, 110, 30);
+
+        boxGastronomico.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        boxGastronomico.setForeground(new java.awt.Color(255, 102, 0));
+        boxGastronomico.setText("Gastronómico");
+        boxGastronomico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxGastronomicoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boxGastronomico);
+        boxGastronomico.setBounds(40, 460, 110, 30);
+
+        boxHistorico.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        boxHistorico.setForeground(new java.awt.Color(255, 102, 0));
+        boxHistorico.setText("Histórico");
+        boxHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxHistoricoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boxHistorico);
+        boxHistorico.setBounds(200, 460, 110, 30);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel8.setText("Recomendaciones personales");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(30, 520, 310, 14);
+
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("- No entregues información personal a extraños.");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(30, 540, 310, 14);
+
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("- Si vas a hacer un tour, consulta primero sobre los lugares a visitar.");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(30, 560, 400, 14);
+
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("- Recuerda que esta aplicación está basada en el \"give and take\".");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(30, 580, 400, 14);
+
+        boxAceptarTyC.setForeground(new java.awt.Color(255, 255, 255));
+        boxAceptarTyC.setText("Acepto los términos y condiciones");
+        getContentPane().add(boxAceptarTyC);
+        boxAceptarTyC.setBounds(30, 610, 240, 30);
+
+        botonAceptar.setBackground(new java.awt.Color(255, 102, 0));
+        botonAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        botonAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        botonAceptar.setText("Aceptar");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonAceptar);
+        botonAceptar.setBounds(310, 610, 110, 30);
 
         labelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/crearPerfil.jpg"))); // NOI18N
         getContentPane().add(labelFondo);
@@ -69,6 +225,38 @@ public class CrearPerfil extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCelularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCelularActionPerformed
+
+    private void boxUrbanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxUrbanoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxUrbanoActionPerformed
+
+    private void boxComercialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxComercialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxComercialActionPerformed
+
+    private void boxCulturalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxCulturalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxCulturalActionPerformed
+
+    private void boxEcologicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxEcologicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxEcologicoActionPerformed
+
+    private void boxGastronomicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxGastronomicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxGastronomicoActionPerformed
+
+    private void boxHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxHistoricoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxHistoricoActionPerformed
+
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,10 +294,28 @@ public class CrearPerfil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton botonAceptar;
+    private javax.swing.JCheckBox boxAceptarTyC;
+    private javax.swing.JCheckBox boxComercial;
+    private javax.swing.JCheckBox boxCultural;
+    private javax.swing.JCheckBox boxEcologico;
+    private javax.swing.JCheckBox boxGastronomico;
+    private javax.swing.JCheckBox boxHistorico;
+    private javax.swing.JCheckBox boxUrbano;
+    private javax.swing.JComboBox<String> comboBoxTour;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelFondo;
+    private javax.swing.JTextField txtCelular;
     // End of variables declaration//GEN-END:variables
 }

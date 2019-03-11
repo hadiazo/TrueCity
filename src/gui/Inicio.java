@@ -360,19 +360,43 @@ public class Inicio extends javax.swing.JFrame {
         fechaNacimiento = fecha;
         respuestaSeguridad = this.txtPrimeraMascota.getText();
         
+        if (listaUsuarios.containsKey(nick)) {
+            JOptionPane.showMessageDialog(rootPane, "Este nick ya fue utilizado. Por favor ingrese otro",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!(nombre.length() > 0 && apellido.length() > 0 && nick.length() > 0 && email.length() > 0 
+                && clave.length() > 0 && ciudad.length() > 0 && respuestaSeguridad.length() > 0 && fecha != null)) {
+            JOptionPane.showMessageDialog(rootPane, "No puede dejar campos en blanco. Intente de nuevo",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (email.length() <= 0 || email.indexOf('@') <= 1 || email.indexOf('.') <= 1 
+                || email.endsWith("@") || email.endsWith(".") || email.endsWith(".@") || email.endsWith("@.")) {
+            JOptionPane.showMessageDialog(rootPane, "Email inválido. Intente de nuevo",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Usuario usuario = new Usuario(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
+            BaseDatos.guardarUsuario(usuario, listaUsuarios);
+            JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito");
+            CrearPerfil a = new CrearPerfil();
+            a.setVisible(true);
+            this.setVisible(false);
+        }
+        
+        /*
         if (nombre.length() > 0 && apellido.length() > 0 && nick.length() > 0 && email.length() > 0 
                 && clave.length() > 0 && ciudad.length() > 0 && respuestaSeguridad.length() > 0 
                 && fecha != null && email.indexOf('@') > 0 && email.indexOf('.') > 0 && !listaUsuarios.containsKey(nick)) {
 
             Usuario usuario = new Usuario(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
             BaseDatos.guardarUsuario(usuario, listaUsuarios);
-            JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito. Ingrese a la plataforma");
+            JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito");
+            CrearPerfil a = new CrearPerfil();
+            a.setVisible(true);
+            this.setVisible(false);
             //System.out.println(usuario.toString());
         } else {
             JOptionPane.showMessageDialog(rootPane, "Error creando usuario. Probablemente el nick ya fue tomado, "
                     + "o ingresó un campo de texto no válido. Intente de nuevo",
                     "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_botonCrearUsuarioActionPerformed
 
     private void labelOlvidasteContrasenhaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOlvidasteContrasenhaMousePressed
