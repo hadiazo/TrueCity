@@ -29,7 +29,7 @@ public class Visitante extends Usuario {
     public void setDestino(String destino) {
         this.destino = destino;
     }
-
+    
     public int getDuracionMaxTour() {
         return duracionMaxTour;
     }

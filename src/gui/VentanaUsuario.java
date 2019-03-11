@@ -29,6 +29,12 @@ public class VentanaUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
         labelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -36,12 +42,52 @@ public class VentanaUsuario extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Cambria Math", 0, 36)); // NOI18N
+        jLabel1.setText("Programar un viaje es muy fácil");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(270, 40, 490, 50);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 204, 255));
+        jLabel2.setText("Selecciona tu destino");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(510, 180, 190, 30);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 204, 255));
+        jLabel3.setText("Selecciona una fecha para tu tour");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(63, 180, 280, 30);
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bogotá", "Cali", "Cartagena", "Manizales", "Medellín" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(490, 220, 220, 30);
+        getContentPane().add(jDateChooser1);
+        jDateChooser1.setBounds(70, 220, 260, 30);
+
+        jButton1.setBackground(new java.awt.Color(255, 102, 0));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Buscar");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(610, 280, 100, 30);
+
         labelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/ventanaUsuario.jpg"))); // NOI18N
         getContentPane().add(labelFondo);
         labelFondo.setBounds(-200, -30, 1220, 660);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,6 +125,12 @@ public class VentanaUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel labelFondo;
     // End of variables declaration//GEN-END:variables
 }

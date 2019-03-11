@@ -81,7 +81,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         contrasenha = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
-        txtCiudad = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         radioMasculino = new javax.swing.JRadioButton();
@@ -224,13 +224,15 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(430, 260, 90, 14);
 
-        txtCiudad.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bogotá", "Cali", "Cartagena", "Manizales", "Medellín" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCiudadActionPerformed(evt);
+                jComboBox1ActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCiudad);
-        txtCiudad.setBounds(570, 280, 180, 30);
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(570, 280, 180, 30);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("Género");
@@ -328,10 +330,6 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_contrasenhaActionPerformed
 
-    private void txtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCiudadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCiudadActionPerformed
-
     private void radioMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMasculinoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioMasculinoActionPerformed
@@ -353,7 +351,7 @@ public class Inicio extends javax.swing.JFrame {
         nick = this.txtNuevoUsuario.getText();
         clave = String.valueOf(this.contrasenhaUsuarioNuevo.getPassword());
         email = this.txtEmail.getText();
-        ciudad = this.txtCiudad.getText();
+        ciudad = (String) this.jComboBox1.getSelectedItem();
         if (this.radioFemenino.isSelected()) {
             genero = this.radioFemenino.getText();
         } else {
@@ -399,6 +397,10 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonAceptarActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -441,6 +443,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPasswordField contrasenha;
     private javax.swing.JPasswordField contrasenhaUsuarioNuevo;
+    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -460,7 +463,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioFemenino;
     private javax.swing.JRadioButton radioMasculino;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNuevoUsuario;
