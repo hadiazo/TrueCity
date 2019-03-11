@@ -5,6 +5,7 @@
  */
 package gui;
 
+import data.BaseDatos;
 import data.Usuario;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
@@ -131,6 +132,7 @@ public class OlvidasteTuContrasenha extends javax.swing.JFrame {
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         // TODO add your handling code here:
+        listaUsuarios = BaseDatos.leerCSV(listaUsuarios);
         nick = this.txtUsuario.getText();
         respuestaSeguridad = this.txtPrimeraMascota.getText();
         clave = String.valueOf(this.contrasenha.getPassword());
@@ -146,6 +148,7 @@ public class OlvidasteTuContrasenha extends javax.swing.JFrame {
         } else {
             listaUsuarios.get(nick).setClave(clave);
             JOptionPane.showMessageDialog(rootPane, "Contraseña cambiada con éxito. Ingrese a la plataforma. ");
+            BaseDatos.guardarUsuario(listaUsuarios.get(nick), listaUsuarios); //Aún guarda contraseñas viejas
             this.setVisible(false);
         }
         

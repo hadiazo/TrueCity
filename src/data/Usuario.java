@@ -1,5 +1,6 @@
 package data;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Usuario {
@@ -101,4 +102,17 @@ public class Usuario {
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
+
+    @Override
+    public String toString() { //Para el .csv
+        String fecha;
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        fecha = formatter.format(this.getFechaNacimiento()); 
+        
+        String info = this.getNombre()+","+this.getApellido()+","+this.getNick()+","+this.getEmail()+","
+                +this.getClave()+","+this.getCiudad()+","+this.getGenero()+","+fecha+","+this.getRespuestaSeguridad()+"\n";
+        return info;
+    }
+    
+    
 }
