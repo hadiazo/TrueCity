@@ -12,6 +12,7 @@ import java.awt.event.*;
 import java.util.Date;
 import java.util.TreeMap;
 import com.toedter.calendar.*;
+import data.BaseDatos;
 
 /**
  *
@@ -28,9 +29,15 @@ public class Inicio extends javax.swing.JFrame {
     private String genero;
     private Date fechaNacimiento = null;
     private String respuestaSeguridad;
-    /**
-     * Creates new form Ventana
-     */
+
+    public TreeMap<String, Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(TreeMap<String, Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+
     public Inicio() {
         initComponents();
         this.setResizable(false);
@@ -334,6 +341,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void botonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearUsuarioActionPerformed
         // TODO add your handling code here:
+        listaUsuarios = BaseDatos.leerCSV(listaUsuarios);
         Date fecha = jDateChooser1.getDate();
         nombre = this.txtNombre.getText();
         apellido = this.txtApellido.getText();
@@ -354,7 +362,7 @@ public class Inicio extends javax.swing.JFrame {
                 && fecha != null && email.indexOf('@') > 0 && email.indexOf('.') > 0 && !listaUsuarios.containsKey(nick)) {
 
             Usuario usuario = new Usuario(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
-            listaUsuarios.put(usuario.getNick(), usuario);
+            BaseDatos.guardarUsuario(usuario, listaUsuarios);
             JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito. Ingrese a la plataforma");
             //System.out.println(usuario.toString());
         } else {
