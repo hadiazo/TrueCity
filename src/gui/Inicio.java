@@ -79,7 +79,7 @@ public class Inicio extends javax.swing.JFrame {
         txtNuevoUsuario = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        contrasenha = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
         txtCiudad = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -131,6 +131,11 @@ public class Inicio extends javax.swing.JFrame {
         botonAceptar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         botonAceptar.setForeground(new java.awt.Color(255, 255, 255));
         botonAceptar.setText("Aceptar");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonAceptar);
         botonAceptar.setBounds(690, 30, 77, 30);
 
@@ -206,13 +211,13 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(440, 140, 70, 14);
 
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        contrasenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                contrasenhaActionPerformed(evt);
             }
         });
-        getContentPane().add(jPasswordField2);
-        jPasswordField2.setBounds(560, 30, 120, 30);
+        getContentPane().add(contrasenha);
+        contrasenha.setBounds(560, 30, 120, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Contraseña");
@@ -319,9 +324,9 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+    private void contrasenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrasenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
+    }//GEN-LAST:event_contrasenhaActionPerformed
 
     private void txtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCiudadActionPerformed
         // TODO add your handling code here:
@@ -378,6 +383,22 @@ public class Inicio extends javax.swing.JFrame {
         a.setVisible(true);
     }//GEN-LAST:event_labelOlvidasteContrasenhaMousePressed
 
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        // TODO add your handling code here:
+        listaUsuarios = BaseDatos.leerCSV(listaUsuarios);
+        if (!listaUsuarios.containsKey(txtUsuario.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "Usuario no encontrado. Digite otra vez o regístrese",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!(String.valueOf(contrasenha.getPassword()).equals(listaUsuarios.get(txtUsuario.getText()).getClave()))) {
+            JOptionPane.showMessageDialog(rootPane, "Contraseña incorrecta. Digite otra vez o cambie su contraseña",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            VentanaUsuario a = new VentanaUsuario ();
+            a.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_botonAceptarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -418,6 +439,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonCrearUsuario;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JPasswordField contrasenha;
     private javax.swing.JPasswordField contrasenhaUsuarioNuevo;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
@@ -431,7 +453,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JLabel labelContrasenha;
     private javax.swing.JLabel labelFondo;
     private javax.swing.JLabel labelOlvidasteContrasenha;
