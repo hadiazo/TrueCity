@@ -40,7 +40,29 @@ public abstract class BaseDatos {
         return listaUsuarios;
     }
 
-    
+    public static void leerCSVGuias () {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader("guias.csv"));
+            String line = br.readLine();
+            while (null != line) {
+                String[] atributos = line.split(";");
+                String nick;
+                nick = atributos[0];
+            }
+        } catch (Exception e) {
+            
+        } finally {
+            if (null != br) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("Error IO");
+                }
+            }
+        }
+    }
     
     public static void guardarUsuario(Usuario usuario, TreeMap<String, Usuario> listaUsuarios, TreeMap<String, Guia> listaGuias, TreeMap<String, Visitante> listaVisitantes) {
         listaUsuarios.put(usuario.getNick(), usuario);

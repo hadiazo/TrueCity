@@ -38,12 +38,7 @@ public class CrearPerfil extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        checkBoxes.add(boxComercial);
-        checkBoxes.add(boxCultural);
-        checkBoxes.add(boxEcologico);
-        checkBoxes.add(boxGastronomico);
-        checkBoxes.add(boxHistorico);
-        checkBoxes.add(boxUrbano);
+        
     }
 
     /**
@@ -282,6 +277,13 @@ public class CrearPerfil extends javax.swing.JFrame {
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         // TODO add your handling code here:
+        checkBoxes.add(boxComercial);
+        checkBoxes.add(boxCultural);
+        checkBoxes.add(boxEcologico);
+        checkBoxes.add(boxGastronomico);
+        checkBoxes.add(boxHistorico);
+        checkBoxes.add(boxUrbano);
+        
         try {
             numCelular = Integer.parseInt(this.txtCelular.getText());
         } catch (Exception e) {
@@ -289,9 +291,7 @@ public class CrearPerfil extends javax.swing.JFrame {
         }
         tipoGuia = (String) this.comboBoxTour.getSelectedItem();
         descripcion = jTextArea1.getText();
-        for(int i=0; i<checkBoxes.size(); i++) {
-            CrearPerfil.verificarInfo(checkBoxes.get(i), interesesTuristicos);
-        }
+        interesesTuristicos = CrearPerfil.verificarInfo(checkBoxes);
         
         if (numCelular < 1000000) {
             JOptionPane.showMessageDialog(rootPane, "Número de teléfono inválido. Digite otra vez",
@@ -326,10 +326,14 @@ public class CrearPerfil extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonAceptarActionPerformed
 
-    private static void verificarInfo (JCheckBox checkbox, ArrayList<String> infos) {
-	if (checkbox.isSelected()) {
-            infos.add(checkbox.getText());
+    private static ArrayList<String> verificarInfo (ArrayList<JCheckBox> checkBoxes) {
+	ArrayList<String> infos = new ArrayList <> ();
+        for (JCheckBox checkBox : checkBoxes) {
+            if (checkBox.isSelected()) {
+                infos.add(checkBox.getText());
+            }
         }
+        return infos;
     }
     
     /**

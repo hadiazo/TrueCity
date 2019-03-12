@@ -88,6 +88,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txtPrimeraMascota = new javax.swing.JTextField();
         botonCrearUsuario = new javax.swing.JButton();
+        labelLogo = new javax.swing.JLabel();
         labelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -293,6 +294,10 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(botonCrearUsuario);
         botonCrearUsuario.setBounds(630, 500, 120, 30);
 
+        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/logo.jpeg"))); // NOI18N
+        getContentPane().add(labelLogo);
+        labelLogo.setBounds(20, 20, 120, 120);
+
         labelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/fondo.jpeg"))); // NOI18N
         getContentPane().add(labelFondo);
         labelFondo.setBounds(0, 0, 810, 600);
@@ -496,6 +501,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel labelContrasenha;
     private javax.swing.JLabel labelFondo;
+    private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelOlvidasteContrasenha;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JRadioButton radioFemenino;
