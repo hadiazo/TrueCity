@@ -5,19 +5,38 @@
  */
 package gui;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Harold Díaz
  */
 public class CrearPerfil extends javax.swing.JFrame {
-
+    private int numCelular;
+    private String tipoGuia;
+    private String descripcion;
+    private ArrayList<String> interesesTuristicos;
+    private boolean box;
+    private ArrayList<JCheckBox> checkBoxes = new ArrayList<>();
+    
     /**
      * Creates new form CrearPerfil
      */
+    
+    
     public CrearPerfil() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        checkBoxes.add(boxComercial);
+        checkBoxes.add(boxCultural);
+        checkBoxes.add(boxEcologico);
+        checkBoxes.add(boxGastronomico);
+        checkBoxes.add(boxHistorico);
+        checkBoxes.add(boxUrbano);
     }
 
     /**
@@ -225,7 +244,7 @@ public class CrearPerfil extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void txtCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCelularActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCelularActionPerformed
@@ -256,8 +275,41 @@ public class CrearPerfil extends javax.swing.JFrame {
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         // TODO add your handling code here:
+        try {
+            numCelular = Integer.parseInt(this.txtCelular.getText());
+        } catch (Exception e) {
+            numCelular = 0;
+        }
+        tipoGuia = (String) this.comboBoxTour.getSelectedItem();
+        descripcion = jTextArea1.getText();
+        for(int i=0; i<checkBoxes.size(); i++) {
+            CrearPerfil.verificarInfo(checkBoxes.get(i), interesesTuristicos);
+        }
+        
+        if (numCelular < 1000000) {
+            JOptionPane.showMessageDialog(rootPane, "Número de teléfono inválido. Digite otra vez",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (descripcion.length() < 2) {
+            JOptionPane.showMessageDialog(rootPane, "Descripción en blanco o muy corta. Digite otra vez",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (interesesTuristicos.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Por favor seleccione algún interés turístico",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!boxAceptarTyC.isSelected()) {
+            JOptionPane.showMessageDialog(rootPane, "Por favor acepte los términos y condiciones",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            
+        }
+        
     }//GEN-LAST:event_botonAceptarActionPerformed
 
+    private static void verificarInfo (JCheckBox checkbox, ArrayList<String> infos) {
+	if (checkbox.isSelected()) {
+            infos.add(checkbox.getText());
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

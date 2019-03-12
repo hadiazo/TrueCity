@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.TreeMap;
 import com.toedter.calendar.*;
 import data.BaseDatos;
+import data.Guia;
+import data.Visitante;
 
 /**
  *
@@ -20,6 +22,8 @@ import data.BaseDatos;
  */
 public class Inicio extends javax.swing.JFrame {
     private TreeMap <String, Usuario> listaUsuarios = new TreeMap <>();
+    private TreeMap <String, Guia> listaGuias = new TreeMap <> ();
+    private TreeMap <String, Visitante> listaVisitantes = new TreeMap <> ();
     private String nombre;
     private String apellido;
     private String nick;
@@ -29,14 +33,6 @@ public class Inicio extends javax.swing.JFrame {
     private String genero;
     private Date fechaNacimiento = null;
     private String respuestaSeguridad;
-
-    public TreeMap<String, Usuario> getListaUsuarios() {
-        return listaUsuarios;
-    }
-
-    public void setListaUsuarios(TreeMap<String, Usuario> listaUsuarios) {
-        this.listaUsuarios = listaUsuarios;
-    }
 
     public Inicio() {
         initComponents();
@@ -344,7 +340,9 @@ public class Inicio extends javax.swing.JFrame {
 
     private void botonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearUsuarioActionPerformed
         // TODO add your handling code here:
-        listaUsuarios = BaseDatos.leerCSV(listaUsuarios);
+        listaUsuarios = BaseDatos.leerCSVUsuarios(listaUsuarios);
+        listaGuias = Inicio.crearGuias(listaUsuarios);
+        listaVisitantes = Inicio.crearVisitantes(listaUsuarios);
         Date fecha = jDateChooser1.getDate();
         nombre = this.txtNombre.getText();
         apellido = this.txtApellido.getText();
@@ -373,30 +371,16 @@ public class Inicio extends javax.swing.JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             Usuario usuario = new Usuario(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
-            BaseDatos.guardarUsuario(usuario, listaUsuarios);
+            BaseDatos.guardarUsuario(usuario, listaUsuarios, listaGuias, listaVisitantes);
+            Guia guiaNuevo = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+            Visitante visitanteNuevo = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+            listaGuias.put(guiaNuevo.getNick(), guiaNuevo);
+            listaVisitantes.put(visitanteNuevo.getNick(), visitanteNuevo);
             JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito");
             CrearPerfil a = new CrearPerfil();
             a.setVisible(true);
             this.setVisible(false);
         }
-        
-        /*
-        if (nombre.length() > 0 && apellido.length() > 0 && nick.length() > 0 && email.length() > 0 
-                && clave.length() > 0 && ciudad.length() > 0 && respuestaSeguridad.length() > 0 
-                && fecha != null && email.indexOf('@') > 0 && email.indexOf('.') > 0 && !listaUsuarios.containsKey(nick)) {
-
-            Usuario usuario = new Usuario(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
-            BaseDatos.guardarUsuario(usuario, listaUsuarios);
-            JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito");
-            CrearPerfil a = new CrearPerfil();
-            a.setVisible(true);
-            this.setVisible(false);
-            //System.out.println(usuario.toString());
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Error creando usuario. Probablemente el nick ya fue tomado, "
-                    + "o ingresó un campo de texto no válido. Intente de nuevo",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }*/
     }//GEN-LAST:event_botonCrearUsuarioActionPerformed
 
     private void labelOlvidasteContrasenhaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelOlvidasteContrasenhaMousePressed
@@ -407,7 +391,9 @@ public class Inicio extends javax.swing.JFrame {
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         // TODO add your handling code here:
-        listaUsuarios = BaseDatos.leerCSV(listaUsuarios);
+        listaUsuarios = BaseDatos.leerCSVUsuarios(listaUsuarios);
+        listaGuias = Inicio.crearGuias(listaUsuarios);
+        listaVisitantes = Inicio.crearVisitantes(listaUsuarios);
         if (!listaUsuarios.containsKey(txtUsuario.getText())) {
             JOptionPane.showMessageDialog(rootPane, "Usuario no encontrado. Digite otra vez o regístrese",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -421,6 +407,26 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonAceptarActionPerformed
 
+    static TreeMap <String, Guia> crearGuias (TreeMap <String, Usuario> listaUsuarios) {
+        TreeMap <String, Guia> listaGuias = new TreeMap <> ();
+        for (Usuario usuario : listaUsuarios.values()) {
+            Guia guia;
+            guia = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+            listaGuias.put(guia.getNick(), guia);
+        }
+        return listaGuias;
+    }
+    
+    static TreeMap <String, Visitante> crearVisitantes (TreeMap <String, Usuario> listaUsuarios) {
+        TreeMap <String, Visitante> listaVisitantes = new TreeMap <> ();
+        for (Usuario usuario : listaUsuarios.values()) {
+            Visitante visitante;
+            visitante = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+            listaVisitantes.put(visitante.getNick(), visitante);
+        }
+        return listaVisitantes;
+    }
+    
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -494,18 +500,4 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
     
-    
-    /*
-    class MouseListener extends MouseAdapter {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            JLabel l = (JLabel) e.getSource();
-            if(l.getName().equals("¿Olvidaste tu contraseña?")) {
-                
-            }
-        }
-    }
-    MouseListener mouseListener = new MouseListener();
-    labelOlvidasteContrasenha.addMouseListener(MouseListener);
-    */
 }

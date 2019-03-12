@@ -10,7 +10,7 @@ import java.util.TreeMap;
 
 public abstract class BaseDatos {
 
-    public static TreeMap<String, Usuario> leerCSV(TreeMap<String, Usuario> listaUsuarios) {
+    public static TreeMap<String, Usuario> leerCSVUsuarios(TreeMap<String, Usuario> listaUsuarios) {
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader("usuarios.csv"));
@@ -40,7 +40,7 @@ public abstract class BaseDatos {
         return listaUsuarios;
     }
 
-    public static void guardarUsuario(Usuario usuario, TreeMap<String, Usuario> listaUsuarios) {
+    public static void guardarUsuario(Usuario usuario, TreeMap<String, Usuario> listaUsuarios, TreeMap<String, Guia> listaGuias, TreeMap<String, Visitante> listaVisitantes) {
         listaUsuarios.put(usuario.getNick(), usuario);
         FileWriter writer = null;
         try {
