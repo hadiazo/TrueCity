@@ -35,4 +35,11 @@ public class Guia extends Usuario {
         this.descripcion = descripcion;
     }
 
+    @Override
+    public String toString() {
+        String numero = String.valueOf(this.getNumCelular());
+        String info = super.getNick() + ";" + this.getTipoGuia() + ";" + numero + ";" + this.getDescripcion() + "\n";
+        return info;
+    }
+    
 }

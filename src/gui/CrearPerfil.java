@@ -302,6 +302,9 @@ public class CrearPerfil extends javax.swing.JFrame {
         } else if (descripcion.length() > 140) {
             JOptionPane.showMessageDialog(rootPane, "Descripción muy larga. Digite otra vez",
                     "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (descripcion.contains(";")) {
+            JOptionPane.showMessageDialog(rootPane, "No ingreses caracteres inválidos. Intenta de nuevo",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         } else if (interesesTuristicos.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Por favor seleccione algún interés turístico",
                     "Error", JOptionPane.ERROR_MESSAGE);

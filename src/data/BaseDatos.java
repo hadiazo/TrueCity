@@ -40,6 +40,8 @@ public abstract class BaseDatos {
         return listaUsuarios;
     }
 
+    
+    
     public static void guardarUsuario(Usuario usuario, TreeMap<String, Usuario> listaUsuarios, TreeMap<String, Guia> listaGuias, TreeMap<String, Visitante> listaVisitantes) {
         listaUsuarios.put(usuario.getNick(), usuario);
         FileWriter writer = null;
