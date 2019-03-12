@@ -16,7 +16,7 @@ public abstract class BaseDatos {
             br = new BufferedReader(new FileReader("usuarios.csv"));
             String line = br.readLine();
             while (null != line) {
-                String[] atributos = line.split(",");
+                String[] atributos = line.split(";");
                 Date fecha = new SimpleDateFormat("dd/MM/yyyy").parse(atributos[7]); //Para convertir el String a Date
                 if (listaUsuarios.containsKey(atributos[2])) {
                     listaUsuarios.remove(atributos[2]); //Esto evita que, en caso de que haya existido cambios de datos, haya redundancia

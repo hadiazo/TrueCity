@@ -33,6 +33,8 @@ public class Inicio extends javax.swing.JFrame {
     private String genero;
     private Date fechaNacimiento = null;
     private String respuestaSeguridad;
+    static Guia guiaNuevo;
+    static Visitante visitanteNuevo;
 
     public Inicio() {
         initComponents();
@@ -359,21 +361,25 @@ public class Inicio extends javax.swing.JFrame {
         respuestaSeguridad = this.txtPrimeraMascota.getText();
         
         if (listaUsuarios.containsKey(nick)) {
-            JOptionPane.showMessageDialog(rootPane, "Este nick ya fue utilizado. Por favor ingrese otro",
+            JOptionPane.showMessageDialog(rootPane, "Este nick ya fue utilizado. Por favor ingresa otro",
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!(nombre.length() > 0 && apellido.length() > 0 && nick.length() > 0 && email.length() > 0 
                 && clave.length() > 0 && ciudad.length() > 0 && respuestaSeguridad.length() > 0 && fecha != null)) {
-            JOptionPane.showMessageDialog(rootPane, "No puede dejar campos en blanco. Intente de nuevo",
+            JOptionPane.showMessageDialog(rootPane, "No puede dejar campos en blanco. Intenta de nuevo",
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else if (email.length() <= 0 || email.indexOf('@') <= 1 || email.indexOf('.') <= 1 
                 || email.endsWith("@") || email.endsWith(".") || email.endsWith(".@") || email.endsWith("@.")) {
-            JOptionPane.showMessageDialog(rootPane, "Email inválido. Intente de nuevo",
+            JOptionPane.showMessageDialog(rootPane, "Email inválido. Intenta de nuevo",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (nombre.contains(";") || apellido.contains(";") || nick.contains(";") || clave.contains(";") 
+                || email.contains(";") || respuestaSeguridad.contains(";")) {
+            JOptionPane.showMessageDialog(rootPane, "No ingreses caracteres inválidos. Intenta de nuevo",
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             Usuario usuario = new Usuario(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
             BaseDatos.guardarUsuario(usuario, listaUsuarios, listaGuias, listaVisitantes);
-            Guia guiaNuevo = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
-            Visitante visitanteNuevo = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+            guiaNuevo = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+            visitanteNuevo = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
             listaGuias.put(guiaNuevo.getNick(), guiaNuevo);
             listaVisitantes.put(visitanteNuevo.getNick(), visitanteNuevo);
             JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito");
@@ -407,6 +413,8 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonAceptarActionPerformed
 
+    
+    
     static TreeMap <String, Guia> crearGuias (TreeMap <String, Usuario> listaUsuarios) {
         TreeMap <String, Guia> listaGuias = new TreeMap <> ();
         for (Usuario usuario : listaUsuarios.values()) {

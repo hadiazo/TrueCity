@@ -5,8 +5,13 @@
  */
 package gui;
 
+import data.BaseDatos;
+import data.Guia;
+import data.Usuario;
+import data.Visitante;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
@@ -21,6 +26,8 @@ public class CrearPerfil extends javax.swing.JFrame {
     private ArrayList<String> interesesTuristicos;
     private boolean box;
     private ArrayList<JCheckBox> checkBoxes = new ArrayList<>();
+    Guia guia;
+    Visitante visitante;
     
     /**
      * Creates new form CrearPerfil
@@ -72,7 +79,7 @@ public class CrearPerfil extends javax.swing.JFrame {
         botonAceptar = new javax.swing.JButton();
         labelFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("TrueCity");
         setPreferredSize(new java.awt.Dimension(460, 690));
         getContentPane().setLayout(null);
@@ -292,6 +299,9 @@ public class CrearPerfil extends javax.swing.JFrame {
         } else if (descripcion.length() < 2) {
             JOptionPane.showMessageDialog(rootPane, "Descripción en blanco o muy corta. Digite otra vez",
                     "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (descripcion.length() > 140) {
+            JOptionPane.showMessageDialog(rootPane, "Descripción muy larga. Digite otra vez",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         } else if (interesesTuristicos.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Por favor seleccione algún interés turístico",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -299,7 +309,16 @@ public class CrearPerfil extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Por favor acepte los términos y condiciones",
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            
+            /*TreeMap <String, Usuario> listaUsuarios = new TreeMap <>();
+            listaUsuarios = BaseDatos.leerCSVUsuarios(listaUsuarios);*/
+            Inicio.guiaNuevo.setNumCelular(numCelular);
+            Inicio.guiaNuevo.setTipoGuia(tipoGuia);
+            Inicio.guiaNuevo.setDescripcion(descripcion);
+            Inicio.visitanteNuevo.setInteresesTuristicos(interesesTuristicos);
+            JOptionPane.showMessageDialog(rootPane, "Gracias por completar tu registro");
+            CrearPerfil a = new CrearPerfil();
+            a.setVisible(true);
+            this.setVisible(false);
         }
         
     }//GEN-LAST:event_botonAceptarActionPerformed

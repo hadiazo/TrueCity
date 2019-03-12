@@ -109,8 +109,8 @@ public class Usuario {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         fecha = formatter.format(this.getFechaNacimiento()); 
         
-        String info = this.getNombre()+","+this.getApellido()+","+this.getNick()+","+this.getEmail()+","
-                +this.getClave()+","+this.getCiudad()+","+this.getGenero()+","+fecha+","+this.getRespuestaSeguridad()+"\n";
+        String info = this.getNombre()+";"+this.getApellido()+";"+this.getNick()+";"+this.getEmail()+";"
+                +this.getClave()+";"+this.getCiudad()+";"+this.getGenero()+";"+fecha+";"+this.getRespuestaSeguridad()+"\n";
         return info;
     }
     
