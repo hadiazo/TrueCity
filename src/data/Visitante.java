@@ -48,6 +48,16 @@ public class Visitante extends Usuario {
         this.duracionMaxTour = duracionMaxTour;
     }
 
+    /*public Date getFechaTour() {
+        return fechaTour;
+    }
+
+    public void setFechaTour(Date fechaTour) {
+        this.fechaTour = fechaTour;
+    }*/
+
+    
+    
     public Calendar getFechaTour() {
         return fechaTour;
     }
