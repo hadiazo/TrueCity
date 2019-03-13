@@ -35,6 +35,7 @@ public class Inicio extends javax.swing.JFrame {
     private String respuestaSeguridad;
     static Guia guiaNuevo;
     static Visitante visitanteNuevo;
+    static boolean usuarioNuevo;
 
     public Inicio() {
         initComponents();
@@ -387,7 +388,7 @@ public class Inicio extends javax.swing.JFrame {
             BaseDatos.guardarUsuario(usuario, listaUsuarios);
             guiaNuevo = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
             visitanteNuevo = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
-            
+            usuarioNuevo = true;
             //BaseDatos.guardarGuias(guiaNuevo, listaGuias);
             //listaVisitantes.put(visitanteNuevo.getNick(), visitanteNuevo);
             //BaseDatos.guardarGuias(guiaNuevo, listaGuias);
@@ -416,6 +417,7 @@ public class Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Contraseña incorrecta. Digite otra vez o cambie su contraseña",
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
+            usuarioNuevo = false;
             VentanaUsuario a = new VentanaUsuario ();
             a.setVisible(true);
             this.setVisible(false);

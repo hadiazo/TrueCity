@@ -5,6 +5,14 @@
  */
 package gui;
 
+import data.Guia;
+import data.Visitante;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Harold Díaz
@@ -14,10 +22,22 @@ public class VentanaUsuario extends javax.swing.JFrame {
     /**
      * Creates new form VentanaUsuario
      */
+    private DefaultTableModel modelo;
+    static Visitante visitante = CrearPerfil.visitante;
+    private Date fechaYHoraObtenidas;
+    private Calendar fechaYHora;
+    private String destino;
+    private String tipoTour;
+    private int duracionTour;
+    
     public VentanaUsuario() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        //cargarGuiasDisponibles(visitante);
+        //spinnerFechaYHora.setModel(new SpinnerDateModel());
+        //spinnerFechaYHora.setEditor(new JSpinner.DateEditor(spinnerFechaYHora, "dd/MM/yyyy"));
+
     }
 
     /**
@@ -31,10 +51,17 @@ public class VentanaUsuario extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        comboBoxTipoTour = new javax.swing.JComboBox<>();
         comboBoxDestino = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        spinnerFechaYHora = new javax.swing.JSpinner();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
         botonBuscar = new javax.swing.JButton();
+        spinnerHoras = new javax.swing.JSpinner();
+        jLabel6 = new javax.swing.JLabel();
         labelLogo = new javax.swing.JLabel();
         labelFondo = new javax.swing.JLabel();
 
@@ -54,10 +81,31 @@ public class VentanaUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(510, 160, 173, 30);
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("¿Cuántas horas quieres que dure el tour?");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(390, 240, 290, 30);
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel3.setText("Selecciona una fecha para tu tour");
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Puedes ponerte en contacto con los siguientes usuarios para el tour");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(70, 160, 273, 30);
+        jLabel3.setBounds(70, 340, 580, 30);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel4.setText("Selecciona una fecha y hora para tu tour");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(50, 160, 330, 30);
+
+        comboBoxTipoTour.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        comboBoxTipoTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comercial", "Cultural", "Ecológico", "Gastronómico", "Histórico", "Urbano" }));
+        comboBoxTipoTour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxTipoTourActionPerformed(evt);
+            }
+        });
+        getContentPane().add(comboBoxTipoTour);
+        comboBoxTipoTour.setBounds(80, 270, 260, 30);
 
         comboBoxDestino.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         comboBoxDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bogotá", "Cali", "Cartagena", "Manizales", "Medellín" }));
@@ -67,16 +115,51 @@ public class VentanaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(comboBoxDestino);
-        comboBoxDestino.setBounds(490, 190, 220, 30);
-        getContentPane().add(jDateChooser1);
-        jDateChooser1.setBounds(80, 190, 260, 30);
+        comboBoxDestino.setBounds(470, 190, 260, 30);
+
+        spinnerFechaYHora.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        spinnerFechaYHora.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH));
+        spinnerFechaYHora.setToolTipText("");
+        getContentPane().add(spinnerFechaYHora);
+        spinnerFechaYHora.setBounds(80, 190, 260, 30);
+
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tabla.setCellSelectionEnabled(false);
+        tabla.setPreferredSize(new java.awt.Dimension(0, 0));
+        tabla.setRowSelectionAllowed(true);
+        jScrollPane1.setViewportView(tabla);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(70, 380, 670, 130);
 
         botonBuscar.setBackground(new java.awt.Color(255, 102, 0));
         botonBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
         botonBuscar.setText("Buscar");
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonBuscar);
-        botonBuscar.setBounds(610, 370, 100, 30);
+        botonBuscar.setBounds(630, 300, 100, 30);
+
+        spinnerHoras.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        spinnerHoras.setModel(new javax.swing.SpinnerNumberModel(1, 1, 24, 1));
+        getContentPane().add(spinnerHoras);
+        spinnerHoras.setBounds(680, 240, 50, 30);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel6.setText("¿Qué tipo de tour quieres realizar?");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(70, 240, 290, 30);
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/logo.jpeg"))); // NOI18N
         getContentPane().add(labelLogo);
@@ -93,6 +176,50 @@ public class VentanaUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxDestinoActionPerformed
 
+    private void comboBoxTipoTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTipoTourActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxTipoTourActionPerformed
+
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        // TODO add your handling code here:
+        if (Inicio.usuarioNuevo) {
+            fechaYHoraObtenidas = (Date) spinnerFechaYHora.getValue();
+            fechaYHora = VentanaUsuario.convertirDateACalendar(fechaYHoraObtenidas);
+            destino = (String) this.comboBoxDestino.getSelectedItem();
+            tipoTour = (String) this.comboBoxTipoTour.getSelectedItem();
+            duracionTour = (Integer) spinnerHoras.getValue();
+            visitante.setFechaTour(fechaYHora);
+            visitante.setDuracionMaxTour(duracionTour);
+            visitante.setDestino(destino);
+            cargarGuiasDisponibles();
+        } else {
+            
+        }
+        
+    }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private static Calendar convertirDateACalendar(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal;
+    }
+    
+    private void cargarGuiasDisponibles () {
+        String[] titulos = {"Nombre completo", "Nickname", "Género", "Número de teléfono"};
+        String[] registro = new String[4];
+        modelo = new DefaultTableModel(null, titulos);
+        for (Guia guia : Inicio.listaGuias.values()) {
+            if(CrearPerfil.guia.getCiudad().equals(visitante.getDestino())) {
+                registro[0] = guia.getNombre().concat(" " + guia.getApellido());
+                registro[1] = guia.getNick();
+                registro[2] = guia.getGenero();
+                registro[3] = guia.getNumCelular();
+                modelo.addRow(registro);
+            }
+        }
+        tabla.setModel(modelo);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -127,15 +254,26 @@ public class VentanaUsuario extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBuscar;
     private javax.swing.JComboBox<String> comboBoxDestino;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JComboBox<String> comboBoxTipoTour;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelFondo;
     private javax.swing.JLabel labelLogo;
+    private javax.swing.JSpinner spinnerFechaYHora;
+    private javax.swing.JSpinner spinnerHoras;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
+
+
+
 }

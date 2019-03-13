@@ -1,6 +1,7 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Visitante extends Usuario {
@@ -8,8 +9,8 @@ public class Visitante extends Usuario {
     private ArrayList<String> interesesTuristicos;
     private String numCelular;
     private String destino;
-    private int duracionMaxTour; //Se hace en minutos
-    private Date fechaTour;
+    private Calendar fechaTour; //Y también la hora del día
+    private int duracionMaxTour; //Se hace en horas
 
     public Visitante(String nombre, String apellido, String nick, String email, String clave, String ciudad, String genero, Date fechaNacimiento, String respuestaSeguridad) {
         super(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
@@ -47,11 +48,11 @@ public class Visitante extends Usuario {
         this.duracionMaxTour = duracionMaxTour;
     }
 
-    public Date getFechaTour() {
+    public Calendar getFechaTour() {
         return fechaTour;
     }
 
-    public void setFechaTour(Date fechaTour) {
+    public void setFechaTour(Calendar fechaTour) {
         this.fechaTour = fechaTour;
     }
 
@@ -61,7 +62,7 @@ public class Visitante extends Usuario {
         for(int i=0; i<this.getInteresesTuristicos().size(); i++) {
             info = info.concat(";" + this.getInteresesTuristicos().get(i));
         }
-        info = info + "\n";
+        info = info + ";" + this.getNumCelular() + "\n";
         return info;
     }
     

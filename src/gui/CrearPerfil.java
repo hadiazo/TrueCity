@@ -25,10 +25,9 @@ public class CrearPerfil extends javax.swing.JFrame {
     private String tipoGuia;
     private String descripcion;
     private ArrayList<String> interesesTuristicos;
-    private boolean box;
     private ArrayList<JCheckBox> checkBoxes = new ArrayList<>();
-    Guia guia;
-    Visitante visitante;
+    static Guia guia;
+    static Visitante visitante;
     
     /**
      * Creates new form CrearPerfil
@@ -106,7 +105,7 @@ public class CrearPerfil extends javax.swing.JFrame {
         getContentPane().add(txtCelular);
         txtCelular.setBounds(240, 150, 190, 30);
 
-        comboBoxTour.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        comboBoxTour.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         comboBoxTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comercial", "Cultural", "Ecológico", "Gastronómico", "Histórico", "Urbano" }));
         getContentPane().add(comboBoxTour);
         comboBoxTour.setBounds(240, 200, 190, 30);

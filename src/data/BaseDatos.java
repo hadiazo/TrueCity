@@ -49,11 +49,9 @@ public abstract class BaseDatos {
             String line = br.readLine();
             while (null != line) {
                 String[] atributos = line.split(";");
-                for(int i=0; i<atributos.length; i++) {
-                    System.out.println(atributos[i]);
+                if (listaGuias.containsKey(atributos[0])) {
+                    listaGuias.remove(atributos[0]); //Esto evita que, en caso de que haya existido cambios de datos, haya redundancia
                 }
-                //int numCelular;
-                //numCelular = Integer.valueOf(atributos[2]);
                 Usuario usuario;
                 usuario = listaUsuarios.get(atributos[0]);
                 Guia guia = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
@@ -88,6 +86,9 @@ public abstract class BaseDatos {
                 ArrayList <String> interesesVisitante = new ArrayList <> ();
                 String nick;
                 nick = atributos.get(0);
+                if (listaVisitantes.containsKey(atributos.get(0))) {
+                    listaVisitantes.remove(atributos.get(0)); //Esto evita que, en caso de que haya existido cambios de datos, haya redundancia
+                }
                 Usuario usuario;
                 usuario = listaUsuarios.get(nick);
                 Visitante visitante = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
@@ -95,6 +96,7 @@ public abstract class BaseDatos {
                     interesesVisitante.add(atributos.get(i));
                 }
                 visitante.setInteresesTuristicos(interesesVisitante);
+                visitante.setNumCelular(atributos.get(atributos.size()-1));
                 listaVisitantes.put(visitante.getNick(), visitante);
                 line = br.readLine();
             }
