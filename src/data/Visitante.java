@@ -46,4 +46,14 @@ public class Visitante extends Usuario {
         this.fechaTour = fechaTour;
     }
 
+    @Override
+    public String toString() {
+        String info = super.getNick();
+        for(int i=0; i<this.getInteresesTuristicos().size(); i++) {
+            info = info.concat(";" + this.getInteresesTuristicos().get(i));
+        }
+        info = info + "\n";
+        return info;
+    }
+    
 }

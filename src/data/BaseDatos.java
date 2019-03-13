@@ -5,8 +5,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeMap;
+import java.util.Arrays;
 
 public abstract class BaseDatos {
 
@@ -72,6 +74,39 @@ public abstract class BaseDatos {
         return listaGuias;
     }
     
+    public static void leerCSVInteresesVisitantes (TreeMap<String, Usuario> listaUsuarios, TreeMap<String, Visitante> listaVisitantes) {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader("interesesVisitantes.csv"));
+            String line = br.readLine();
+            while (null != line) {
+                ArrayList <String> atributos = new ArrayList <> (Arrays.asList(line.split(";")));
+                ArrayList <String> interesesVisitante = new ArrayList <> ();
+                String nick;
+                nick = atributos.get(0);
+                Usuario usuario;
+                usuario = listaUsuarios.get(nick);
+                Visitante visitante = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+                for (int i=1; i<atributos.size(); i++) {
+                    interesesVisitante.add(atributos.get(i));
+                }
+                visitante.setInteresesTuristicos(interesesVisitante);
+                line = br.readLine();
+            }
+        }  catch (Exception e) {
+            System.out.println("Error al leer interesesVisitantes.csv");
+        } finally {
+            if (null != br) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("Error IO de interesesVisitantes.csv");
+                }
+            }
+        }
+    }
+    
     public static void guardarUsuario(Usuario usuario, TreeMap<String, Usuario> listaUsuarios/*, TreeMap<String, Guia> listaGuias, TreeMap<String, Visitante> listaVisitantes*/) {
         listaUsuarios.put(usuario.getNick(), usuario);
         FileWriter writer = null;
@@ -93,6 +128,18 @@ public abstract class BaseDatos {
             writer.close();
         } catch (Exception e) {
             System.out.println("Error en guias.csv");
+        }
+    }
+    
+    public static void guardarIntereses(Visitante visitante, TreeMap<String, Visitante> listaVisitantes) {
+        listaVisitantes.put(visitante.getNick(), visitante);
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter("interesesVisitantes.csv", true);
+            writer.write(visitante.toString());
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Error en interesesVisitantes.csv");
         }
     }
 }

@@ -317,7 +317,9 @@ public class CrearPerfil extends javax.swing.JFrame {
             Inicio.guiaNuevo.setNumCelular(numCelular);
             Inicio.guiaNuevo.setTipoGuia(tipoGuia);
             Inicio.guiaNuevo.setDescripcion(descripcion);
+            BaseDatos.guardarGuias(Inicio.guiaNuevo, Inicio.listaGuias);
             Inicio.visitanteNuevo.setInteresesTuristicos(interesesTuristicos);
+            
             JOptionPane.showMessageDialog(rootPane, "Gracias por completar tu registro");
             CrearPerfil a = new CrearPerfil();
             a.setVisible(true);
