@@ -23,7 +23,7 @@ import data.Visitante;
 public class Inicio extends javax.swing.JFrame {
     private TreeMap <String, Usuario> listaUsuarios = new TreeMap <>();
     static TreeMap <String, Guia> listaGuias = new TreeMap <> ();
-    private TreeMap <String, Visitante> listaVisitantes = new TreeMap <> ();
+    static TreeMap <String, Visitante> listaVisitantes = new TreeMap <> ();
     private String nombre;
     private String apellido;
     private String nick;
@@ -389,7 +389,7 @@ public class Inicio extends javax.swing.JFrame {
             visitanteNuevo = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
             
             //BaseDatos.guardarGuias(guiaNuevo, listaGuias);
-            listaVisitantes.put(visitanteNuevo.getNick(), visitanteNuevo);
+            //listaVisitantes.put(visitanteNuevo.getNick(), visitanteNuevo);
             //BaseDatos.guardarGuias(guiaNuevo, listaGuias);
             JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito");
             CrearPerfil a = new CrearPerfil();

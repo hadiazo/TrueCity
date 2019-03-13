@@ -49,14 +49,18 @@ public abstract class BaseDatos {
             String line = br.readLine();
             while (null != line) {
                 String[] atributos = line.split(";");
-                int numCelular;
-                numCelular = Integer.parseInt(atributos[2]);
+                for(int i=0; i<atributos.length; i++) {
+                    System.out.println(atributos[i]);
+                }
+                //int numCelular;
+                //numCelular = Integer.valueOf(atributos[2]);
                 Usuario usuario;
                 usuario = listaUsuarios.get(atributos[0]);
                 Guia guia = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
                 guia.setTipoGuia(atributos[1]);
-                guia.setNumCelular(numCelular);
+                guia.setNumCelular(atributos[2]);
                 guia.setDescripcion(atributos[3]);
+                listaGuias.put(guia.getNick(), guia);
                 line = br.readLine();
             }
         } catch (Exception e) {
@@ -91,6 +95,7 @@ public abstract class BaseDatos {
                     interesesVisitante.add(atributos.get(i));
                 }
                 visitante.setInteresesTuristicos(interesesVisitante);
+                listaVisitantes.put(visitante.getNick(), visitante);
                 line = br.readLine();
             }
         }  catch (Exception e) {

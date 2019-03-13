@@ -6,6 +6,7 @@ import java.util.Date;
 public class Visitante extends Usuario {
 
     private ArrayList<String> interesesTuristicos;
+    private String numCelular;
     private String destino;
     private int duracionMaxTour; //Se hace en minutos
     private Date fechaTour;
@@ -21,6 +22,14 @@ public class Visitante extends Usuario {
     public void setInteresesTuristicos(ArrayList<String> interesesTuristicos) {
         this.interesesTuristicos = interesesTuristicos;
     }
+
+    public String getNumCelular() {
+        return numCelular;
+    }
+
+    public void setNumCelular(String numCelular) {
+        this.numCelular = numCelular;
+    }    
 
     public String getDestino() {
         return destino;

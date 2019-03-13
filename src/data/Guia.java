@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Guia extends Usuario {
 	private String tipoGuia;
-        private int numCelular;
+        private String numCelular;
 	private String descripcion;
 
     public Guia(String nombre, String apellido, String nick, String email, String clave, String ciudad, String genero, Date fechaNacimiento, String respuestaSeguridad) {
@@ -19,11 +19,11 @@ public class Guia extends Usuario {
         this.tipoGuia = tipoGuia;
     }
 
-    public int getNumCelular() {
+    public String getNumCelular() {
         return numCelular;
     }
 
-    public void setNumCelular(int numCelular) {
+    public void setNumCelular(String numCelular) {
         this.numCelular = numCelular;
     }
 
@@ -37,8 +37,7 @@ public class Guia extends Usuario {
 
     @Override
     public String toString() {
-        String numero = String.valueOf(this.getNumCelular());
-        String info = super.getNick() + ";" + this.getTipoGuia() + ";" + numero + ";" + this.getDescripcion() + "\n";
+        String info = super.getNick() + ";" + this.getTipoGuia() + ";" + this.getNumCelular() + ";" + this.getDescripcion() + "\n";
         return info;
     }
     

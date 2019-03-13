@@ -5,6 +5,7 @@
  */
 package gui;
 
+import com.sun.glass.events.KeyEvent;
 import data.BaseDatos;
 import data.Guia;
 import data.Usuario;
@@ -20,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author Harold Díaz
  */
 public class CrearPerfil extends javax.swing.JFrame {
-    private int numCelular;
+    private String numCelular;
     private String tipoGuia;
     private String descripcion;
     private ArrayList<String> interesesTuristicos;
@@ -97,6 +98,11 @@ public class CrearPerfil extends javax.swing.JFrame {
                 txtCelularActionPerformed(evt);
             }
         });
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtCelular);
         txtCelular.setBounds(240, 150, 190, 30);
 
@@ -120,9 +126,9 @@ public class CrearPerfil extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Número de celular");
+        jLabel4.setText("Número de celular (Sólo números)");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 150, 200, 30);
+        jLabel4.setBounds(20, 150, 220, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -284,16 +290,12 @@ public class CrearPerfil extends javax.swing.JFrame {
         checkBoxes.add(boxHistorico);
         checkBoxes.add(boxUrbano);
         
-        try {
-            numCelular = Integer.parseInt(this.txtCelular.getText());
-        } catch (Exception e) {
-            numCelular = 0;
-        }
+        numCelular = this.txtCelular.getText();
         tipoGuia = (String) this.comboBoxTour.getSelectedItem();
         descripcion = jTextArea1.getText();
         interesesTuristicos = CrearPerfil.verificarInfo(checkBoxes);
         
-        if (numCelular < 1000000) {
+        if (numCelular.length() < 7) {
             JOptionPane.showMessageDialog(rootPane, "Número de teléfono inválido. Digite otra vez",
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else if (descripcion.length() < 2) {
@@ -319,14 +321,23 @@ public class CrearPerfil extends javax.swing.JFrame {
             Inicio.guiaNuevo.setDescripcion(descripcion);
             BaseDatos.guardarGuias(Inicio.guiaNuevo, Inicio.listaGuias);
             Inicio.visitanteNuevo.setInteresesTuristicos(interesesTuristicos);
-            
+            Inicio.visitanteNuevo.setNumCelular(numCelular);
+            BaseDatos.guardarIntereses(Inicio.visitanteNuevo, Inicio.listaVisitantes);
             JOptionPane.showMessageDialog(rootPane, "Gracias por completar tu registro");
-            CrearPerfil a = new CrearPerfil();
+            VentanaUsuario a = new VentanaUsuario ();
             a.setVisible(true);
             this.setVisible(false);
         }
         
     }//GEN-LAST:event_botonAceptarActionPerformed
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        // TODO add your handling code here:
+        char letra = evt.getKeyChar();
+        if(!(Character.isDigit(letra)) || (letra == KeyEvent.VK_BACKSPACE) || (letra == KeyEvent.VK_DELETE)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCelularKeyTyped
 
     private static ArrayList<String> verificarInfo (ArrayList<JCheckBox> checkBoxes) {
 	ArrayList<String> infos = new ArrayList <> ();
