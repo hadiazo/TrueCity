@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.TreeMap;
 import com.toedter.calendar.*;
 import data.BaseDatos;
+import data.Guia;
+import data.Visitante;
 
 /**
  *
@@ -20,6 +22,8 @@ import data.BaseDatos;
  */
 public class Inicio extends javax.swing.JFrame {
     private TreeMap <String, Usuario> listaUsuarios = new TreeMap <>();
+    static TreeMap <String, Guia> listaGuias = new TreeMap <> ();
+    static TreeMap <String, Visitante> listaVisitantes = new TreeMap <> ();
     private String nombre;
     private String apellido;
     private String nick;
@@ -29,14 +33,9 @@ public class Inicio extends javax.swing.JFrame {
     private String genero;
     private Date fechaNacimiento = null;
     private String respuestaSeguridad;
-
-    public TreeMap<String, Usuario> getListaUsuarios() {
-        return listaUsuarios;
-    }
-
-    public void setListaUsuarios(TreeMap<String, Usuario> listaUsuarios) {
-        this.listaUsuarios = listaUsuarios;
-    }
+    static Guia guiaNuevo;
+    static Visitante visitanteNuevo;
+    static boolean usuarioNuevo;
 
     public Inicio() {
         initComponents();
@@ -79,9 +78,9 @@ public class Inicio extends javax.swing.JFrame {
         txtNuevoUsuario = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        contrasenha = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
-        txtCiudad = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         radioMasculino = new javax.swing.JRadioButton();
@@ -90,6 +89,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txtPrimeraMascota = new javax.swing.JTextField();
         botonCrearUsuario = new javax.swing.JButton();
+        labelLogo = new javax.swing.JLabel();
         labelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,6 +131,11 @@ public class Inicio extends javax.swing.JFrame {
         botonAceptar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         botonAceptar.setForeground(new java.awt.Color(255, 255, 255));
         botonAceptar.setText("Aceptar");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonAceptar);
         botonAceptar.setBounds(690, 30, 77, 30);
 
@@ -206,26 +211,28 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(440, 140, 70, 14);
 
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        contrasenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                contrasenhaActionPerformed(evt);
             }
         });
-        getContentPane().add(jPasswordField2);
-        jPasswordField2.setBounds(560, 30, 120, 30);
+        getContentPane().add(contrasenha);
+        contrasenha.setBounds(560, 30, 120, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Contraseña");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(430, 260, 90, 14);
 
-        txtCiudad.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bogotá", "Cali", "Cartagena", "Manizales", "Medellín" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCiudadActionPerformed(evt);
+                jComboBox1ActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCiudad);
-        txtCiudad.setBounds(570, 280, 180, 30);
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(570, 280, 180, 30);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("Género");
@@ -288,6 +295,10 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(botonCrearUsuario);
         botonCrearUsuario.setBounds(630, 500, 120, 30);
 
+        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/logo.jpeg"))); // NOI18N
+        getContentPane().add(labelLogo);
+        labelLogo.setBounds(20, 20, 120, 120);
+
         labelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/fondo.jpeg"))); // NOI18N
         getContentPane().add(labelFondo);
         labelFondo.setBounds(0, 0, 810, 600);
@@ -319,13 +330,9 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+    private void contrasenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrasenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
-
-    private void txtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCiudadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCiudadActionPerformed
+    }//GEN-LAST:event_contrasenhaActionPerformed
 
     private void radioMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMasculinoActionPerformed
         // TODO add your handling code here:
@@ -341,14 +348,18 @@ public class Inicio extends javax.swing.JFrame {
 
     private void botonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearUsuarioActionPerformed
         // TODO add your handling code here:
-        listaUsuarios = BaseDatos.leerCSV(listaUsuarios);
+        listaUsuarios = BaseDatos.leerCSVUsuarios(listaUsuarios);
+        listaGuias = BaseDatos.leerCSVGuias(listaUsuarios, listaGuias);
+        
+        listaVisitantes = Inicio.crearVisitantes(listaUsuarios);
+        
         Date fecha = jDateChooser1.getDate();
         nombre = this.txtNombre.getText();
         apellido = this.txtApellido.getText();
         nick = this.txtNuevoUsuario.getText();
         clave = String.valueOf(this.contrasenhaUsuarioNuevo.getPassword());
         email = this.txtEmail.getText();
-        ciudad = this.txtCiudad.getText();
+        ciudad = (String) this.jComboBox1.getSelectedItem();
         if (this.radioFemenino.isSelected()) {
             genero = this.radioFemenino.getText();
         } else {
@@ -357,18 +368,34 @@ public class Inicio extends javax.swing.JFrame {
         fechaNacimiento = fecha;
         respuestaSeguridad = this.txtPrimeraMascota.getText();
         
-        if (nombre.length() > 0 && apellido.length() > 0 && nick.length() > 0 && email.length() > 0 
-                && clave.length() > 0 && ciudad.length() > 0 && respuestaSeguridad.length() > 0 
-                && fecha != null && email.indexOf('@') > 0 && email.indexOf('.') > 0 && !listaUsuarios.containsKey(nick)) {
-
+        if (listaUsuarios.containsKey(nick)) {
+            JOptionPane.showMessageDialog(rootPane, "Este nick ya fue utilizado. Por favor ingresa otro",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!(nombre.length() > 0 && apellido.length() > 0 && nick.length() > 0 && email.length() > 0 
+                && clave.length() > 0 && ciudad.length() > 0 && respuestaSeguridad.length() > 0 && fecha != null)) {
+            JOptionPane.showMessageDialog(rootPane, "No puede dejar campos en blanco. Intenta de nuevo",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (email.length() <= 0 || email.indexOf('@') <= 1 || email.indexOf('.') <= 1 
+                || email.endsWith("@") || email.endsWith(".") || email.endsWith(".@") || email.endsWith("@.")) {
+            JOptionPane.showMessageDialog(rootPane, "Email inválido. Intenta de nuevo",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (nombre.contains(";") || apellido.contains(";") || nick.contains(";") || clave.contains(";") 
+                || email.contains(";") || respuestaSeguridad.contains(";")) {
+            JOptionPane.showMessageDialog(rootPane, "No ingreses caracteres inválidos. Intenta de nuevo",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
             Usuario usuario = new Usuario(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
             BaseDatos.guardarUsuario(usuario, listaUsuarios);
-            JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito. Ingrese a la plataforma");
-            //System.out.println(usuario.toString());
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Error creando usuario. Probablemente el nick ya fue tomado, "
-                    + "o ingresó un campo de texto no válido. Intente de nuevo",
-                    "Error", JOptionPane.ERROR_MESSAGE);
+            guiaNuevo = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+            visitanteNuevo = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+            usuarioNuevo = true;
+            //BaseDatos.guardarGuias(guiaNuevo, listaGuias);
+            //listaVisitantes.put(visitanteNuevo.getNick(), visitanteNuevo);
+            //BaseDatos.guardarGuias(guiaNuevo, listaGuias);
+            JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito");
+            CrearPerfil a = new CrearPerfil();
+            a.setVisible(true);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_botonCrearUsuarioActionPerformed
 
@@ -377,6 +404,51 @@ public class Inicio extends javax.swing.JFrame {
         OlvidasteTuContrasenha a = new OlvidasteTuContrasenha ();
         a.setVisible(true);
     }//GEN-LAST:event_labelOlvidasteContrasenhaMousePressed
+
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        // TODO add your handling code here:
+        listaUsuarios = BaseDatos.leerCSVUsuarios(listaUsuarios);
+        //listaGuias = BaseDatos.leerCSVGuias(listaUsuarios, listaGuias);
+        //listaVisitantes = Inicio.crearVisitantes(listaUsuarios);
+        if (!listaUsuarios.containsKey(txtUsuario.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "Usuario no encontrado. Digite otra vez o regístrese",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!(String.valueOf(contrasenha.getPassword()).equals(listaUsuarios.get(txtUsuario.getText()).getClave()))) {
+            JOptionPane.showMessageDialog(rootPane, "Contraseña incorrecta. Digite otra vez o cambie su contraseña",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            usuarioNuevo = false;
+            VentanaUsuario a = new VentanaUsuario ();
+            a.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_botonAceptarActionPerformed
+
+    
+    /*
+    static TreeMap <String, Guia> crearGuias (TreeMap <String, Usuario> listaUsuarios) {
+        TreeMap <String, Guia> listaGuias = new TreeMap <> ();
+        for (Usuario usuario : listaUsuarios.values()) {
+            Guia guia;
+            guia = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+            listaGuias.put(guia.getNick(), guia);
+        }
+        return listaGuias;
+    }*/
+    
+    static TreeMap <String, Visitante> crearVisitantes (TreeMap <String, Usuario> listaUsuarios) {
+        TreeMap <String, Visitante> listaVisitantes = new TreeMap <> ();
+        for (Usuario usuario : listaUsuarios.values()) {
+            Visitante visitante;
+            visitante = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+            listaVisitantes.put(visitante.getNick(), visitante);
+        }
+        return listaVisitantes;
+    }
+    
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -418,7 +490,9 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonCrearUsuario;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JPasswordField contrasenha;
     private javax.swing.JPasswordField contrasenhaUsuarioNuevo;
+    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -431,15 +505,14 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JLabel labelContrasenha;
     private javax.swing.JLabel labelFondo;
+    private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelOlvidasteContrasenha;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JRadioButton radioFemenino;
     private javax.swing.JRadioButton radioMasculino;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNuevoUsuario;
@@ -447,18 +520,4 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
     
-    
-    /*
-    class MouseListener extends MouseAdapter {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            JLabel l = (JLabel) e.getSource();
-            if(l.getName().equals("¿Olvidaste tu contraseña?")) {
-                
-            }
-        }
-    }
-    MouseListener mouseListener = new MouseListener();
-    labelOlvidasteContrasenha.addMouseListener(MouseListener);
-    */
 }

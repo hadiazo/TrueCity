@@ -6,7 +6,9 @@
 package gui;
 
 import data.BaseDatos;
+import data.Guia;
 import data.Usuario;
+import data.Visitante;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
 
@@ -19,10 +21,13 @@ public class OlvidasteTuContrasenha extends javax.swing.JFrame {
     /**
      * Creates new form OlvidasteTuContrasenha
      */
+    
     private String nick;
     private String respuestaSeguridad;
     private String clave;
     private TreeMap <String, Usuario> listaUsuarios = new TreeMap <>();
+    private TreeMap <String, Guia> listaGuias = new TreeMap <> ();
+    private TreeMap <String, Visitante> listaVisitantes = new TreeMap <> ();
     
     public OlvidasteTuContrasenha() {
         initComponents();
@@ -132,7 +137,7 @@ public class OlvidasteTuContrasenha extends javax.swing.JFrame {
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         // TODO add your handling code here:
-        listaUsuarios = BaseDatos.leerCSV(listaUsuarios);
+        listaUsuarios = BaseDatos.leerCSVUsuarios(listaUsuarios);
         nick = this.txtUsuario.getText();
         respuestaSeguridad = this.txtPrimeraMascota.getText();
         clave = String.valueOf(this.contrasenha.getPassword());
