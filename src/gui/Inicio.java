@@ -421,7 +421,9 @@ public class Inicio extends javax.swing.JFrame {
         } else {
             usuarioNuevo = false;
             visitante = listaVisitantes.get(txtUsuario.getText());
-            VentanaUsuario a = new VentanaUsuario ();
+            //VentanaUsuario a = new VentanaUsuario ();
+            //a.setVisible(true);
+            Bienvenido a = new Bienvenido ();
             a.setVisible(true);
             this.setVisible(false);
         }

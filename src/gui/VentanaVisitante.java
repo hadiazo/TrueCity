@@ -19,10 +19,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Harold Díaz
  * Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
  */
-public class VentanaUsuario extends javax.swing.JFrame {
+public class VentanaVisitante extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentanaUsuario
+     * Creates new form VentanaVisitante
      */
     private DefaultTableModel modelo;
     static Visitante visitante;
@@ -32,7 +32,7 @@ public class VentanaUsuario extends javax.swing.JFrame {
     private String tipoTour;
     private int duracionTour;
     
-    public VentanaUsuario() {
+    public VentanaVisitante() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -190,7 +190,7 @@ public class VentanaUsuario extends javax.swing.JFrame {
             //fechaYHoraObtenidas = jDateChooser1.getDate();
             //fechaObtenida.setHours((Integer) spinnerHoraDia.getValue());
             //System.out.println(fechaObtenida.toString());
-            //fechaYHora = VentanaUsuario.convertirDateACalendar(fechaYHoraObtenidas);
+            //fechaYHora = VentanaVisitante.convertirDateACalendar(fechaYHoraObtenidas);
             destino = (String) this.comboBoxDestino.getSelectedItem();
             tipoTour = (String) this.comboBoxTipoTour.getSelectedItem();
             duracionTour = (Integer) spinnerHoraTour.getValue();
@@ -209,7 +209,7 @@ public class VentanaUsuario extends javax.swing.JFrame {
             //fechaYHoraObtenidas = jDateChooser1.getDate();
             //fechaObtenida.setHours((Integer) spinnerHoraDia.getValue());
             //System.out.println(fechaObtenida.toString());
-            //fechaYHora = VentanaUsuario.convertirDateACalendar(fechaYHoraObtenidas);
+            //fechaYHora = VentanaVisitante.convertirDateACalendar(fechaYHoraObtenidas);
             destino = (String) this.comboBoxDestino.getSelectedItem();
             tipoTour = (String) this.comboBoxTipoTour.getSelectedItem();
             duracionTour = (Integer) spinnerHoraTour.getValue();
@@ -255,20 +255,21 @@ public class VentanaUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaVisitante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaVisitante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaVisitante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaVisitante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaUsuario().setVisible(true);
+                new VentanaVisitante().setVisible(true);
             }
         });
     }

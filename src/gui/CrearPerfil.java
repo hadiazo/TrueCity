@@ -326,7 +326,9 @@ public class CrearPerfil extends javax.swing.JFrame {
             BaseDatos.guardarIntereses(Inicio.visitanteNuevo, Inicio.listaVisitantes);
             //visitante = CrearPerfil.visitante;
             JOptionPane.showMessageDialog(rootPane, "Gracias por completar tu registro");
-            VentanaUsuario a = new VentanaUsuario ();
+            //VentanaVisitante a = new VentanaVisitante ();
+            //a.setVisible(true);
+            Bienvenido a = new Bienvenido ();
             a.setVisible(true);
             this.setVisible(false);
         }
