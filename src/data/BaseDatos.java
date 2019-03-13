@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.TreeMap;
 import java.util.Arrays;
 
+//Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
+
 public abstract class BaseDatos {
 
     public static TreeMap<String, Usuario> leerCSVUsuarios(TreeMap<String, Usuario> listaUsuarios) {
@@ -76,7 +78,7 @@ public abstract class BaseDatos {
         return listaGuias;
     }
     
-    public static void leerCSVInteresesVisitantes (TreeMap<String, Usuario> listaUsuarios, TreeMap<String, Visitante> listaVisitantes) {
+    public static TreeMap<String, Visitante> leerCSVInteresesVisitantes (TreeMap<String, Usuario> listaUsuarios, TreeMap<String, Visitante> listaVisitantes) {
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader("interesesVisitantes.csv"));
@@ -112,6 +114,7 @@ public abstract class BaseDatos {
                 }
             }
         }
+        return listaVisitantes;
     }
     
     public static void guardarUsuario(Usuario usuario, TreeMap<String, Usuario> listaUsuarios/*, TreeMap<String, Guia> listaGuias, TreeMap<String, Visitante> listaVisitantes*/) {

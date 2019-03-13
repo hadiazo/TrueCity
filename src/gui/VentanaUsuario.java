@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Harold Díaz
+ * Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
  */
 public class VentanaUsuario extends javax.swing.JFrame {
 
@@ -199,7 +200,24 @@ public class VentanaUsuario extends javax.swing.JFrame {
             visitante.setDestino(destino);
             cargarGuiasDisponibles(tipoTour);
         } else {
+            visitante = Inicio.visitante;
+            fechaObtenida = (Date) spinnerFechaYHora.getValue();
+            //fechaObtenida = jDateChooser1.getDate();
+            //fechaYHoraObtenidas = (Date) spinnerFechaYHora.getValue();
+            Calendar cal = new GregorianCalendar();
+            cal.setTime(fechaObtenida);
+            //fechaYHoraObtenidas = jDateChooser1.getDate();
+            //fechaObtenida.setHours((Integer) spinnerHoraDia.getValue());
+            //System.out.println(fechaObtenida.toString());
+            //fechaYHora = VentanaUsuario.convertirDateACalendar(fechaYHoraObtenidas);
+            destino = (String) this.comboBoxDestino.getSelectedItem();
+            tipoTour = (String) this.comboBoxTipoTour.getSelectedItem();
+            duracionTour = (Integer) spinnerHoraTour.getValue();
             
+            visitante.setFechaTour(cal);
+            visitante.setDuracionMaxTour(duracionTour);
+            visitante.setDestino(destino);
+            cargarGuiasDisponibles(tipoTour);
         }
         
     }//GEN-LAST:event_botonBuscarActionPerformed

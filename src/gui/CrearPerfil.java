@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Harold Díaz
+ * @author Harold Díaz}
+ * Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
  */
 public class CrearPerfil extends javax.swing.JFrame {
     private String numCelular;

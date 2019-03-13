@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+//Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
+
 public class Visitante extends Usuario {
 
     private ArrayList<String> interesesTuristicos;

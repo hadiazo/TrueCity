@@ -2,6 +2,8 @@ package data;
 
 import java.util.Date;
 
+//Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
+
 public class Guia extends Usuario {
 	private String tipoGuia;
         private String numCelular;
