@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Visitante extends Usuario {
+//Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
 
+public class Visitante extends Usuario {
     private ArrayList<String> interesesTuristicos;
     private String numCelular;
     private String destino;
@@ -47,7 +48,7 @@ public class Visitante extends Usuario {
     public void setDuracionMaxTour(int duracionMaxTour) {
         this.duracionMaxTour = duracionMaxTour;
     }
-
+    
     public Calendar getFechaTour() {
         return fechaTour;
     }

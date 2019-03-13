@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Harold Díaz
+ * Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
  */
 public class OlvidasteTuContrasenha extends javax.swing.JFrame {
 

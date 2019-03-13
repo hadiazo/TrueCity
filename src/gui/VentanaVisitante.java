@@ -7,8 +7,10 @@ package gui;
 
 import data.Guia;
 import data.Visitante;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.table.DefaultTableModel;
@@ -16,21 +18,23 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Harold Díaz
+ * Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
  */
-public class VentanaUsuario extends javax.swing.JFrame {
+public class VentanaVisitante extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentanaUsuario
+     * Creates new form VentanaVisitante
      */
     private DefaultTableModel modelo;
-    static Visitante visitante = CrearPerfil.visitante;
-    private Date fechaYHoraObtenidas;
-    private Calendar fechaYHora;
+    static Visitante visitante;
+    private Date fechaObtenida;
+    //static ArrayList <Visitante> visitantesInteresados = new ArrayList <> ();
+    //private Calendar fechaYHora;
     private String destino;
     private String tipoTour;
     private int duracionTour;
     
-    public VentanaUsuario() {
+    public VentanaVisitante() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -53,15 +57,16 @@ public class VentanaUsuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        spinnerFechaYHora = new javax.swing.JSpinner();
         comboBoxTipoTour = new javax.swing.JComboBox<>();
         comboBoxDestino = new javax.swing.JComboBox<>();
-        spinnerFechaYHora = new javax.swing.JSpinner();
+        jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         botonBuscar = new javax.swing.JButton();
-        spinnerHoras = new javax.swing.JSpinner();
+        spinnerHoraTour = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
+        botonVolver = new javax.swing.JButton();
         labelLogo = new javax.swing.JLabel();
         labelFondo = new javax.swing.JLabel();
 
@@ -84,18 +89,18 @@ public class VentanaUsuario extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("¿Cuántas horas quieres que dure el tour?");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(390, 240, 290, 30);
+        jLabel5.setBounds(390, 250, 290, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Puedes ponerte en contacto con los siguientes usuarios para el tour");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(70, 340, 580, 30);
+        jLabel3.setBounds(60, 340, 580, 30);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel4.setText("Selecciona una fecha y hora para tu tour");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(50, 160, 330, 30);
+        spinnerFechaYHora.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        spinnerFechaYHora.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH));
+        getContentPane().add(spinnerFechaYHora);
+        spinnerFechaYHora.setBounds(80, 190, 260, 30);
 
         comboBoxTipoTour.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         comboBoxTipoTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comercial", "Cultural", "Ecológico", "Gastronómico", "Histórico", "Urbano" }));
@@ -105,7 +110,7 @@ public class VentanaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(comboBoxTipoTour);
-        comboBoxTipoTour.setBounds(80, 270, 260, 30);
+        comboBoxTipoTour.setBounds(80, 290, 260, 30);
 
         comboBoxDestino.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         comboBoxDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bogotá", "Cali", "Cartagena", "Manizales", "Medellín" }));
@@ -117,11 +122,10 @@ public class VentanaUsuario extends javax.swing.JFrame {
         getContentPane().add(comboBoxDestino);
         comboBoxDestino.setBounds(470, 190, 260, 30);
 
-        spinnerFechaYHora.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        spinnerFechaYHora.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH));
-        spinnerFechaYHora.setToolTipText("");
-        getContentPane().add(spinnerFechaYHora);
-        spinnerFechaYHora.setBounds(80, 190, 260, 30);
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel7.setText("Elige una fecha y una hora para tu tour");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(50, 160, 320, 30);
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,13 +135,10 @@ public class VentanaUsuario extends javax.swing.JFrame {
 
             }
         ));
-        tabla.setCellSelectionEnabled(false);
-        tabla.setPreferredSize(new java.awt.Dimension(0, 0));
-        tabla.setRowSelectionAllowed(true);
         jScrollPane1.setViewportView(tabla);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(70, 380, 670, 130);
+        jScrollPane1.setBounds(60, 370, 670, 130);
 
         botonBuscar.setBackground(new java.awt.Color(255, 102, 0));
         botonBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -151,15 +152,27 @@ public class VentanaUsuario extends javax.swing.JFrame {
         getContentPane().add(botonBuscar);
         botonBuscar.setBounds(630, 300, 100, 30);
 
-        spinnerHoras.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        spinnerHoras.setModel(new javax.swing.SpinnerNumberModel(1, 1, 24, 1));
-        getContentPane().add(spinnerHoras);
-        spinnerHoras.setBounds(680, 240, 50, 30);
+        spinnerHoraTour.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        spinnerHoraTour.setModel(new javax.swing.SpinnerNumberModel(1, 1, 24, 1));
+        getContentPane().add(spinnerHoraTour);
+        spinnerHoraTour.setBounds(680, 250, 50, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel6.setText("¿Qué tipo de tour quieres realizar?");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(70, 240, 290, 30);
+        jLabel6.setBounds(70, 250, 290, 30);
+
+        botonVolver.setBackground(new java.awt.Color(51, 153, 255));
+        botonVolver.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        botonVolver.setForeground(new java.awt.Color(255, 255, 255));
+        botonVolver.setText("Volver");
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVolverActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonVolver);
+        botonVolver.setBounds(30, 530, 100, 30);
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/logo.jpeg"))); // NOI18N
         getContentPane().add(labelLogo);
@@ -183,33 +196,63 @@ public class VentanaUsuario extends javax.swing.JFrame {
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         // TODO add your handling code here:
         if (Inicio.usuarioNuevo) {
-            fechaYHoraObtenidas = (Date) spinnerFechaYHora.getValue();
-            fechaYHora = VentanaUsuario.convertirDateACalendar(fechaYHoraObtenidas);
+            visitante = CrearPerfil.visitante;
+            fechaObtenida = (Date) spinnerFechaYHora.getValue();
+            //fechaObtenida = jDateChooser1.getDate();
+            //fechaYHoraObtenidas = (Date) spinnerFechaYHora.getValue();
+            Calendar cal = new GregorianCalendar();
+            cal.setTime(fechaObtenida);
+            //fechaYHoraObtenidas = jDateChooser1.getDate();
+            //fechaObtenida.setHours((Integer) spinnerHoraDia.getValue());
+            //System.out.println(fechaObtenida.toString());
+            //fechaYHora = VentanaVisitante.convertirDateACalendar(fechaYHoraObtenidas);
             destino = (String) this.comboBoxDestino.getSelectedItem();
             tipoTour = (String) this.comboBoxTipoTour.getSelectedItem();
-            duracionTour = (Integer) spinnerHoras.getValue();
-            visitante.setFechaTour(fechaYHora);
+            duracionTour = (Integer) spinnerHoraTour.getValue();
+            
+            visitante.setFechaTour(cal);
             visitante.setDuracionMaxTour(duracionTour);
             visitante.setDestino(destino);
-            cargarGuiasDisponibles();
+            cargarGuiasDisponibles(tipoTour);
         } else {
+            visitante = Inicio.visitante;
+            fechaObtenida = (Date) spinnerFechaYHora.getValue();
+            //fechaObtenida = jDateChooser1.getDate();
+            //fechaYHoraObtenidas = (Date) spinnerFechaYHora.getValue();
+            Calendar cal = new GregorianCalendar();
+            cal.setTime(fechaObtenida);
+            //fechaYHoraObtenidas = jDateChooser1.getDate();
+            //fechaObtenida.setHours((Integer) spinnerHoraDia.getValue());
+            //System.out.println(fechaObtenida.toString());
+            //fechaYHora = VentanaVisitante.convertirDateACalendar(fechaYHoraObtenidas);
+            destino = (String) this.comboBoxDestino.getSelectedItem();
+            tipoTour = (String) this.comboBoxTipoTour.getSelectedItem();
+            duracionTour = (Integer) spinnerHoraTour.getValue();
             
+            visitante.setFechaTour(cal);
+            visitante.setDuracionMaxTour(duracionTour);
+            visitante.setDestino(destino);
+            cargarGuiasDisponibles(tipoTour);
         }
         
     }//GEN-LAST:event_botonBuscarActionPerformed
 
-    private static Calendar convertirDateACalendar(Date date) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        return cal;
-    }
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+        // TODO add your handling code here:
+        Bienvenido a = new Bienvenido ();
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botonVolverActionPerformed
     
-    private void cargarGuiasDisponibles () {
+    private void cargarGuiasDisponibles (String tipoTour) {
         String[] titulos = {"Nombre completo", "Nickname", "Género", "Número de teléfono"};
         String[] registro = new String[4];
         modelo = new DefaultTableModel(null, titulos);
         for (Guia guia : Inicio.listaGuias.values()) {
-            if(CrearPerfil.guia.getCiudad().equals(visitante.getDestino())) {
+            if(guia.getCiudad().equals(visitante.getDestino()) && tipoTour.equals(guia.getTipoGuia())) {
+                //visitantesInteresados = guia.getVisitantesInteresados();
+                //guia.setVisitantesInteresados(visitantesInteresados);
+                //guia.getVisitantesInteresados().add(visitante);
                 registro[0] = guia.getNombre().concat(" " + guia.getApellido());
                 registro[1] = guia.getNick();
                 registro[2] = guia.getGenero();
@@ -237,20 +280,21 @@ public class VentanaUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaVisitante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaVisitante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaVisitante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaVisitante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaUsuario().setVisible(true);
+                new VentanaVisitante().setVisible(true);
             }
         });
     }
@@ -258,19 +302,20 @@ public class VentanaUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonVolver;
     private javax.swing.JComboBox<String> comboBoxDestino;
     private javax.swing.JComboBox<String> comboBoxTipoTour;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelFondo;
     private javax.swing.JLabel labelLogo;
     private javax.swing.JSpinner spinnerFechaYHora;
-    private javax.swing.JSpinner spinnerHoras;
+    private javax.swing.JSpinner spinnerHoraTour;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 

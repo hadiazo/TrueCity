@@ -19,9 +19,10 @@ import data.Visitante;
 /**
  *
  * @author Harold Díaz
+ * Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
  */
 public class Inicio extends javax.swing.JFrame {
-    private TreeMap <String, Usuario> listaUsuarios = new TreeMap <>();
+    static TreeMap <String, Usuario> listaUsuarios = new TreeMap <>();
     static TreeMap <String, Guia> listaGuias = new TreeMap <> ();
     static TreeMap <String, Visitante> listaVisitantes = new TreeMap <> ();
     private String nombre;
@@ -33,8 +34,9 @@ public class Inicio extends javax.swing.JFrame {
     private String genero;
     private Date fechaNacimiento = null;
     private String respuestaSeguridad;
-    static Guia guiaNuevo;
+    static Guia guia;
     static Visitante visitanteNuevo;
+    static Visitante visitante;
     static boolean usuarioNuevo;
 
     public Inicio() {
@@ -386,7 +388,7 @@ public class Inicio extends javax.swing.JFrame {
         } else {
             Usuario usuario = new Usuario(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
             BaseDatos.guardarUsuario(usuario, listaUsuarios);
-            guiaNuevo = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+            guia = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
             visitanteNuevo = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
             usuarioNuevo = true;
             //BaseDatos.guardarGuias(guiaNuevo, listaGuias);
@@ -408,8 +410,8 @@ public class Inicio extends javax.swing.JFrame {
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         // TODO add your handling code here:
         listaUsuarios = BaseDatos.leerCSVUsuarios(listaUsuarios);
-        //listaGuias = BaseDatos.leerCSVGuias(listaUsuarios, listaGuias);
-        //listaVisitantes = Inicio.crearVisitantes(listaUsuarios);
+        listaGuias = BaseDatos.leerCSVGuias(listaUsuarios, listaGuias);
+        listaVisitantes = BaseDatos.leerCSVInteresesVisitantes(listaUsuarios, listaVisitantes);
         if (!listaUsuarios.containsKey(txtUsuario.getText())) {
             JOptionPane.showMessageDialog(rootPane, "Usuario no encontrado. Digite otra vez o regístrese",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -418,7 +420,11 @@ public class Inicio extends javax.swing.JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             usuarioNuevo = false;
-            VentanaUsuario a = new VentanaUsuario ();
+            visitante = listaVisitantes.get(txtUsuario.getText());
+            //VentanaUsuario a = new VentanaUsuario ();
+            //a.setVisible(true);
+            guia = listaGuias.get(txtUsuario.getText());
+            Bienvenido a = new Bienvenido ();
             a.setVisible(true);
             this.setVisible(false);
         }

@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Harold Díaz
+ * @author Harold Díaz}
+ * Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
  */
 public class CrearPerfil extends javax.swing.JFrame {
     private String numCelular;
@@ -28,6 +29,7 @@ public class CrearPerfil extends javax.swing.JFrame {
     private ArrayList<JCheckBox> checkBoxes = new ArrayList<>();
     static Guia guia;
     static Visitante visitante;
+    static TreeMap<String, Guia> listaGuias;
     
     /**
      * Creates new form CrearPerfil
@@ -315,15 +317,21 @@ public class CrearPerfil extends javax.swing.JFrame {
         } else {
             /*TreeMap <String, Usuario> listaUsuarios = new TreeMap <>();
             listaUsuarios = BaseDatos.leerCSVUsuarios(listaUsuarios);*/
-            Inicio.guiaNuevo.setNumCelular(numCelular);
-            Inicio.guiaNuevo.setTipoGuia(tipoGuia);
-            Inicio.guiaNuevo.setDescripcion(descripcion);
-            BaseDatos.guardarGuias(Inicio.guiaNuevo, Inicio.listaGuias);
-            Inicio.visitanteNuevo.setInteresesTuristicos(interesesTuristicos);
-            Inicio.visitanteNuevo.setNumCelular(numCelular);
+            Inicio.guia.setNumCelular(numCelular);
+            Inicio.guia.setTipoGuia(tipoGuia);
+            Inicio.guia.setDescripcion(descripcion);
+            BaseDatos.guardarGuias(Inicio.guia, Inicio.listaGuias);
+            listaGuias = Inicio.listaGuias;
+            visitante = Inicio.visitanteNuevo;
+            visitante.setInteresesTuristicos(interesesTuristicos);
+            visitante.setNumCelular(numCelular);
             BaseDatos.guardarIntereses(Inicio.visitanteNuevo, Inicio.listaVisitantes);
+            //visitante = CrearPerfil.visitante;
             JOptionPane.showMessageDialog(rootPane, "Gracias por completar tu registro");
-            VentanaUsuario a = new VentanaUsuario ();
+            //VentanaVisitante a = new VentanaVisitante ();
+            //a.setVisible(true);
+            guia = Inicio.guia;
+            Bienvenido a = new Bienvenido ();
             a.setVisible(true);
             this.setVisible(false);
         }

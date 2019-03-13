@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.TreeMap;
 import java.util.Arrays;
 
+//Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
+
 public abstract class BaseDatos {
 
     public static TreeMap<String, Usuario> leerCSVUsuarios(TreeMap<String, Usuario> listaUsuarios) {
@@ -76,7 +78,7 @@ public abstract class BaseDatos {
         return listaGuias;
     }
     
-    public static void leerCSVInteresesVisitantes (TreeMap<String, Usuario> listaUsuarios, TreeMap<String, Visitante> listaVisitantes) {
+    public static TreeMap<String, Visitante> leerCSVInteresesVisitantes (TreeMap<String, Usuario> listaUsuarios, TreeMap<String, Visitante> listaVisitantes) {
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader("interesesVisitantes.csv"));
@@ -112,7 +114,44 @@ public abstract class BaseDatos {
                 }
             }
         }
+        return listaVisitantes;
     }
+    
+    /*public static void leerCSVVisitantesInteresados(TreeMap<String, Usuario> listaUsuarios, TreeMap<String, Guia> listaGuias) {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader("interesesVisitantes.csv"));
+            String line = br.readLine();
+            while (null != line) {
+                ArrayList <String> atributos = new ArrayList <> (Arrays.asList(line.split(";")));
+                ArrayList <String> visitantesInteresados = new ArrayList <> ();
+                String nick;
+                nick = atributos.get(0);
+                if (listaGuias.containsKey(atributos.get(0))) {
+                    listaGuias.remove(atributos.get(0)); //Esto evita que, en caso de que haya existido cambios de datos, haya redundancia
+                }
+                Usuario usuario;
+                usuario = listaUsuarios.get(nick);
+                Guia guia = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+                for (int i=1; i<atributos.size(); i++) {
+                    visitantesInteresados.add(atributos.get(i));
+                }
+                
+                line = br.readLine();
+            }
+        } catch (Exception e) {
+            System.out.println("Error al leer visitantesInteresados.csv");
+        } finally {
+            if (null != br) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("Error IO de visitantesInteresados.csv");
+                }
+            }
+        }
+    }*/
     
     public static void guardarUsuario(Usuario usuario, TreeMap<String, Usuario> listaUsuarios/*, TreeMap<String, Guia> listaGuias, TreeMap<String, Visitante> listaVisitantes*/) {
         listaUsuarios.put(usuario.getNick(), usuario);
@@ -149,4 +188,15 @@ public abstract class BaseDatos {
             System.out.println("Error en interesesVisitantes.csv");
         }
     }
+    
+    /*public static void guardarVisitantesInteresados(Guia guia, ArrayList <Visitante> visitantesInteresados) {
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter("visitantesInteresados.csv", true);
+            writer.write(guia.toString(visitantesInteresados));
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Error en visitantesInteresados.csv");
+        }
+    }*/
 }
