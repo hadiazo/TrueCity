@@ -7,6 +7,7 @@ package gui;
 
 import data.Guia;
 import data.Visitante;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -27,6 +28,7 @@ public class VentanaVisitante extends javax.swing.JFrame {
     private DefaultTableModel modelo;
     static Visitante visitante;
     private Date fechaObtenida;
+    //static ArrayList <Visitante> visitantesInteresados = new ArrayList <> ();
     //private Calendar fechaYHora;
     private String destino;
     private String tipoTour;
@@ -248,6 +250,9 @@ public class VentanaVisitante extends javax.swing.JFrame {
         modelo = new DefaultTableModel(null, titulos);
         for (Guia guia : Inicio.listaGuias.values()) {
             if(guia.getCiudad().equals(visitante.getDestino()) && tipoTour.equals(guia.getTipoGuia())) {
+                //visitantesInteresados = guia.getVisitantesInteresados();
+                //guia.setVisitantesInteresados(visitantesInteresados);
+                //guia.getVisitantesInteresados().add(visitante);
                 registro[0] = guia.getNombre().concat(" " + guia.getApellido());
                 registro[1] = guia.getNick();
                 registro[2] = guia.getGenero();

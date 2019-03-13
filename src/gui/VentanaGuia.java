@@ -5,6 +5,12 @@
  */
 package gui;
 
+import data.BaseDatos;
+import data.Guia;
+import java.awt.event.KeyEvent;
+import java.util.TreeMap;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Harold Díaz
@@ -12,13 +18,28 @@ package gui;
  */
 public class VentanaGuia extends javax.swing.JFrame {
 
+    private Guia guia;
+    private String numCelular;
+    private String tipoGuia;
+    private String descripcion;
+    private TreeMap<String, Guia> listaGuias;
+    
     /**
      * Creates new form VentanaGuia
      */
     public VentanaGuia() {
+        if (Inicio.usuarioNuevo) {
+            guia = CrearPerfil.guia;
+            
+        } else {
+            guia = Inicio.guia;
+            listaGuias = Inicio.listaGuias;
+        }
+        //System.out.println(guia.toString());
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+       
     }
     
     
@@ -32,7 +53,21 @@ public class VentanaGuia extends javax.swing.JFrame {
     private void initComponents() {
 
         botonVolver = new javax.swing.JButton();
+        txtCiudad = new javax.swing.JTextField();
+        txtNick = new javax.swing.JTextField();
+        txtNombreCompleto = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        txtCelular = new javax.swing.JTextField();
+        comboBoxTour = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        botonConfirmarCambios = new javax.swing.JButton();
         labelLogo = new javax.swing.JLabel();
         labelFondo = new javax.swing.JLabel();
 
@@ -51,13 +86,111 @@ public class VentanaGuia extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botonVolver);
-        botonVolver.setBounds(30, 530, 100, 30);
+        botonVolver.setBounds(60, 520, 100, 30);
+
+        txtCiudad.setEditable(false);
+        txtCiudad.setBackground(new java.awt.Color(153, 153, 153));
+        txtCiudad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCiudad.setText(guia.getCiudad());
+        getContentPane().add(txtCiudad);
+        txtCiudad.setBounds(210, 250, 180, 30);
+
+        txtNick.setEditable(false);
+        txtNick.setBackground(new java.awt.Color(153, 153, 153));
+        txtNick.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtNick.setText(guia.getNick());
+        getContentPane().add(txtNick);
+        txtNick.setBounds(480, 250, 260, 30);
+
+        txtNombreCompleto.setEditable(false);
+        txtNombreCompleto.setBackground(new java.awt.Color(153, 153, 153));
+        txtNombreCompleto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtNombreCompleto.setText(guia.getNombre()+" "+guia.getApellido());
+        getContentPane().add(txtNombreCompleto);
+        txtNombreCompleto.setBounds(210, 180, 530, 30);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 204, 255));
+        jLabel4.setText("Nick");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(440, 250, 40, 30);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 204, 255));
+        jLabel3.setText("Descripción");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(60, 400, 180, 60);
 
         jLabel1.setFont(new java.awt.Font("Cambria Math", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 102, 0));
         jLabel1.setText("En TrueCity estamos para ayudarte");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(210, 40, 550, 50);
+
+        txtCelular.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCelular.setText(guia.getNumCelular());
+        txtCelular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCelularActionPerformed(evt);
+            }
+        });
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtCelular);
+        txtCelular.setBounds(230, 320, 210, 30);
+
+        comboBoxTour.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        comboBoxTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comercial", "Cultural", "Ecológico", "Gastronómico", "Histórico", "Urbano" }));
+        comboBoxTour.setSelectedItem(guia.getTipoGuia());
+        getContentPane().add(comboBoxTour);
+        comboBoxTour.setBounds(560, 320, 180, 30);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText(guia.getDescripcion());
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(160, 400, 580, 60);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 204, 255));
+        jLabel8.setText("Ciudad de origen");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(60, 250, 170, 30);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 204, 255));
+        jLabel5.setText("Nombre completo");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(60, 180, 160, 30);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 204, 255));
+        jLabel6.setText("Número de teléfono");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(60, 320, 180, 30);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 204, 255));
+        jLabel7.setText("Tipo de guía");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(450, 320, 180, 30);
+
+        botonConfirmarCambios.setBackground(new java.awt.Color(255, 102, 0));
+        botonConfirmarCambios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        botonConfirmarCambios.setForeground(new java.awt.Color(255, 255, 255));
+        botonConfirmarCambios.setText("Confirmar cambios");
+        botonConfirmarCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonConfirmarCambiosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonConfirmarCambios);
+        botonConfirmarCambios.setBounds(570, 520, 170, 30);
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/logo.jpeg"))); // NOI18N
         getContentPane().add(labelLogo);
@@ -70,12 +203,63 @@ public class VentanaGuia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         // TODO add your handling code here:
         Bienvenido a = new Bienvenido ();
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonVolverActionPerformed
+
+    private void txtCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCelularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCelularActionPerformed
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        // TODO add your handling code here:
+        char letra = evt.getKeyChar();
+        if(!(Character.isDigit(letra)) || (letra == KeyEvent.VK_BACK_SPACE) || (letra == KeyEvent.VK_DELETE)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCelularKeyTyped
+
+    private void botonConfirmarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmarCambiosActionPerformed
+        // TODO add your handling code here:
+        numCelular = this.txtCelular.getText();
+        tipoGuia = (String) this.comboBoxTour.getSelectedItem();
+        descripcion = jTextArea1.getText();
+        if (numCelular.length() < 7) {
+            JOptionPane.showMessageDialog(rootPane, "Número de teléfono inválido. Digite otra vez",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (descripcion.length() < 2) {
+            JOptionPane.showMessageDialog(rootPane, "Descripción en blanco o muy corta. Digite otra vez",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (descripcion.length() > 140) {
+            JOptionPane.showMessageDialog(rootPane, "Descripción muy larga. Digite otra vez",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (descripcion.contains(";")) {
+            JOptionPane.showMessageDialog(rootPane, "No ingreses caracteres inválidos. Intenta de nuevo",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (!Inicio.usuarioNuevo) {
+                listaGuias.remove(guia.getNick());
+                guia.setNumCelular(numCelular);
+                guia.setTipoGuia(tipoGuia);
+                guia.setDescripcion(descripcion);
+                BaseDatos.guardarGuias(guia, listaGuias);
+            } else {
+                listaGuias = CrearPerfil.listaGuias;
+                listaGuias.remove(guia.getNick());
+                guia.setNumCelular(numCelular);
+                guia.setTipoGuia(tipoGuia);
+                guia.setDescripcion(descripcion);
+                BaseDatos.guardarGuias(guia, listaGuias);
+            }
+            JOptionPane.showMessageDialog(rootPane, "Datos modificados exitosamente");
+        }
+        
+    }//GEN-LAST:event_botonConfirmarCambiosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,9 +297,23 @@ public class VentanaGuia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonConfirmarCambios;
     private javax.swing.JButton botonVolver;
+    private javax.swing.JComboBox<String> comboBoxTour;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelFondo;
     private javax.swing.JLabel labelLogo;
+    private javax.swing.JTextField txtCelular;
+    private javax.swing.JTextField txtCiudad;
+    private javax.swing.JTextField txtNick;
+    private javax.swing.JTextField txtNombreCompleto;
     // End of variables declaration//GEN-END:variables
 }

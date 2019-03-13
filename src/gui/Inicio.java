@@ -22,7 +22,7 @@ import data.Visitante;
  * Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
  */
 public class Inicio extends javax.swing.JFrame {
-    private TreeMap <String, Usuario> listaUsuarios = new TreeMap <>();
+    static TreeMap <String, Usuario> listaUsuarios = new TreeMap <>();
     static TreeMap <String, Guia> listaGuias = new TreeMap <> ();
     static TreeMap <String, Visitante> listaVisitantes = new TreeMap <> ();
     private String nombre;
@@ -34,7 +34,7 @@ public class Inicio extends javax.swing.JFrame {
     private String genero;
     private Date fechaNacimiento = null;
     private String respuestaSeguridad;
-    static Guia guiaNuevo;
+    static Guia guia;
     static Visitante visitanteNuevo;
     static Visitante visitante;
     static boolean usuarioNuevo;
@@ -388,7 +388,7 @@ public class Inicio extends javax.swing.JFrame {
         } else {
             Usuario usuario = new Usuario(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
             BaseDatos.guardarUsuario(usuario, listaUsuarios);
-            guiaNuevo = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+            guia = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
             visitanteNuevo = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
             usuarioNuevo = true;
             //BaseDatos.guardarGuias(guiaNuevo, listaGuias);
@@ -423,6 +423,7 @@ public class Inicio extends javax.swing.JFrame {
             visitante = listaVisitantes.get(txtUsuario.getText());
             //VentanaUsuario a = new VentanaUsuario ();
             //a.setVisible(true);
+            guia = listaGuias.get(txtUsuario.getText());
             Bienvenido a = new Bienvenido ();
             a.setVisible(true);
             this.setVisible(false);
