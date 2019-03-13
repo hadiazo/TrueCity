@@ -10,6 +10,7 @@ import data.Usuario;
 /**
  *
  * @author Harold Díaz
+ * Karl Weierstrass — 'When I wrote this, only God and I understood what I was doing. Now, God only knows.'
  */
 public class Bienvenido extends javax.swing.JFrame {
 
@@ -123,7 +124,9 @@ public class Bienvenido extends javax.swing.JFrame {
 
     private void botonGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuiaActionPerformed
         // TODO add your handling code here:
-        
+        VentanaGuia a = new VentanaGuia ();
+        a.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_botonGuiaActionPerformed
 
     private void botonVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVisitanteActionPerformed

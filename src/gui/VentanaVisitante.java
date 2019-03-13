@@ -64,6 +64,7 @@ public class VentanaVisitante extends javax.swing.JFrame {
         botonBuscar = new javax.swing.JButton();
         spinnerHoraTour = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
+        botonVolver = new javax.swing.JButton();
         labelLogo = new javax.swing.JLabel();
         labelFondo = new javax.swing.JLabel();
 
@@ -135,7 +136,7 @@ public class VentanaVisitante extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabla);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(60, 370, 670, 150);
+        jScrollPane1.setBounds(60, 370, 670, 130);
 
         botonBuscar.setBackground(new java.awt.Color(255, 102, 0));
         botonBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -158,6 +159,18 @@ public class VentanaVisitante extends javax.swing.JFrame {
         jLabel6.setText("¿Qué tipo de tour quieres realizar?");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(70, 250, 290, 30);
+
+        botonVolver.setBackground(new java.awt.Color(51, 153, 255));
+        botonVolver.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        botonVolver.setForeground(new java.awt.Color(255, 255, 255));
+        botonVolver.setText("Volver");
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVolverActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonVolver);
+        botonVolver.setBounds(30, 530, 100, 30);
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/img/logo.jpeg"))); // NOI18N
         getContentPane().add(labelLogo);
@@ -221,6 +234,13 @@ public class VentanaVisitante extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+        // TODO add your handling code here:
+        Bienvenido a = new Bienvenido ();
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botonVolverActionPerformed
     
     private void cargarGuiasDisponibles (String tipoTour) {
         String[] titulos = {"Nombre completo", "Nickname", "Género", "Número de teléfono"};
@@ -277,6 +297,7 @@ public class VentanaVisitante extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonVolver;
     private javax.swing.JComboBox<String> comboBoxDestino;
     private javax.swing.JComboBox<String> comboBoxTipoTour;
     private javax.swing.JLabel jLabel1;
