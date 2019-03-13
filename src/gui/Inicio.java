@@ -348,7 +348,7 @@ public class Inicio extends javax.swing.JFrame {
     private void botonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearUsuarioActionPerformed
         // TODO add your handling code here:
         listaUsuarios = BaseDatos.leerCSVUsuarios(listaUsuarios);
-        listaGuias = Inicio.crearGuias(listaUsuarios);
+        listaGuias = BaseDatos.leerCSVGuias(listaUsuarios, listaGuias);
         listaVisitantes = Inicio.crearVisitantes(listaUsuarios);
         Date fecha = jDateChooser1.getDate();
         nombre = this.txtNombre.getText();
@@ -382,11 +382,12 @@ public class Inicio extends javax.swing.JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             Usuario usuario = new Usuario(nombre, apellido, nick, email, clave, ciudad, genero, fechaNacimiento, respuestaSeguridad);
-            BaseDatos.guardarUsuario(usuario, listaUsuarios, listaGuias, listaVisitantes);
+            BaseDatos.guardarUsuario(usuario, listaUsuarios);
             guiaNuevo = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
             visitanteNuevo = new Visitante (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
-            listaGuias.put(guiaNuevo.getNick(), guiaNuevo);
+            BaseDatos.guardarGuias(guiaNuevo, listaGuias);
             listaVisitantes.put(visitanteNuevo.getNick(), visitanteNuevo);
+            //BaseDatos.guardarGuias(guiaNuevo, listaGuias);
             JOptionPane.showMessageDialog(rootPane, "Usuario creado con éxito");
             CrearPerfil a = new CrearPerfil();
             a.setVisible(true);
@@ -403,7 +404,7 @@ public class Inicio extends javax.swing.JFrame {
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         // TODO add your handling code here:
         listaUsuarios = BaseDatos.leerCSVUsuarios(listaUsuarios);
-        listaGuias = Inicio.crearGuias(listaUsuarios);
+        listaGuias = BaseDatos.leerCSVGuias(listaUsuarios, listaGuias);
         listaVisitantes = Inicio.crearVisitantes(listaUsuarios);
         if (!listaUsuarios.containsKey(txtUsuario.getText())) {
             JOptionPane.showMessageDialog(rootPane, "Usuario no encontrado. Digite otra vez o regístrese",
@@ -419,7 +420,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     
-    
+    /*
     static TreeMap <String, Guia> crearGuias (TreeMap <String, Usuario> listaUsuarios) {
         TreeMap <String, Guia> listaGuias = new TreeMap <> ();
         for (Usuario usuario : listaUsuarios.values()) {
@@ -428,7 +429,7 @@ public class Inicio extends javax.swing.JFrame {
             listaGuias.put(guia.getNick(), guia);
         }
         return listaGuias;
-    }
+    }*/
     
     static TreeMap <String, Visitante> crearVisitantes (TreeMap <String, Usuario> listaUsuarios) {
         TreeMap <String, Visitante> listaVisitantes = new TreeMap <> ();

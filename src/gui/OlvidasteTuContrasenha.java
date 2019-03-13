@@ -153,7 +153,7 @@ public class OlvidasteTuContrasenha extends javax.swing.JFrame {
         } else {
             listaUsuarios.get(nick).setClave(clave);
             JOptionPane.showMessageDialog(rootPane, "Contraseña cambiada con éxito. Ingrese a la plataforma. ");
-            BaseDatos.guardarUsuario(listaUsuarios.get(nick), listaUsuarios, listaGuias, listaVisitantes); //Aún guarda contraseñas viejas
+            BaseDatos.guardarUsuario(listaUsuarios.get(nick), listaUsuarios); //Aún guarda contraseñas viejas
             this.setVisible(false);
         }
         

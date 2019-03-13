@@ -26,45 +26,53 @@ public abstract class BaseDatos {
                 line = br.readLine();
             }
         } catch (Exception e) {
-            System.out.println("Error");
+            System.out.println("Error al leer usuarios.csv");
         } finally {
             if (null != br) {
                 try {
                     br.close();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    System.out.println("Error IO");
+                    System.out.println("Error IO de usuarios.csv");
                 }
             }
         }
         return listaUsuarios;
     }
 
-    public static void leerCSVGuias () {
+    public static TreeMap<String, Guia> leerCSVGuias (TreeMap<String, Usuario> listaUsuarios, TreeMap<String, Guia> listaGuias) {
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader("guias.csv"));
             String line = br.readLine();
             while (null != line) {
                 String[] atributos = line.split(";");
-                String nick;
-                nick = atributos[0];
+                int numCelular;
+                numCelular = Integer.parseInt(atributos[2]);
+                Usuario usuario;
+                usuario = listaUsuarios.get(atributos[0]);
+                Guia guia = new Guia (usuario.getNombre(), usuario.getApellido(), usuario.getNick(), usuario.getEmail(), usuario.getClave(), usuario.getCiudad(), usuario.getGenero(), usuario.getFechaNacimiento(), usuario.getRespuestaSeguridad());
+                guia.setTipoGuia(atributos[1]);
+                guia.setNumCelular(numCelular);
+                guia.setDescripcion(atributos[3]);
+                line = br.readLine();
             }
         } catch (Exception e) {
-            
+            System.out.println("Error al leer guias.csv");
         } finally {
             if (null != br) {
                 try {
                     br.close();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    System.out.println("Error IO");
+                    System.out.println("Error IO de guias.csv");
                 }
             }
         }
+        return listaGuias;
     }
     
-    public static void guardarUsuario(Usuario usuario, TreeMap<String, Usuario> listaUsuarios, TreeMap<String, Guia> listaGuias, TreeMap<String, Visitante> listaVisitantes) {
+    public static void guardarUsuario(Usuario usuario, TreeMap<String, Usuario> listaUsuarios/*, TreeMap<String, Guia> listaGuias, TreeMap<String, Visitante> listaVisitantes*/) {
         listaUsuarios.put(usuario.getNick(), usuario);
         FileWriter writer = null;
         try {
@@ -72,7 +80,19 @@ public abstract class BaseDatos {
             writer.write(usuario.toString());
             writer.close();
         } catch (Exception e) {
-            System.out.println("Error");
+            System.out.println("Error en usuarios.csv");
+        }
+    }
+    
+    public static void guardarGuias(Guia guia, TreeMap<String, Guia> listaGuias) {
+        listaGuias.put(guia.getNick(), guia);
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter("guias.csv", true);
+            writer.write(guia.toString());
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Error en guias.csv");
         }
     }
 }
